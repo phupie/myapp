@@ -14,3 +14,41 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::namespace('User')->prefix('user')->name('user.')->group(function(){
+    
+    //login
+    Auth::routes([
+        'register' => true,
+        'reset'    => false,
+        'verify'   => false
+    ]);
+    
+    //after login
+    Route::middleware('auth:user')->group(function(){
+        
+        //TOP page
+        Route::resource('home', 'HomeController', ['only' => 'index']);
+    });
+});
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
+    
+    //login
+    Auth::routes([
+        'register' => true,
+        'reset'    => false,
+        'verify'   => false
+    ]);
+    
+    //after login
+    Route::middleware('auth:admin')->group(function(){
+        
+        //TOP page
+        Route::resource('home', 'HomeController', ['only' => 'index']);
+    });
+});
+
+//Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
