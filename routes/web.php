@@ -32,6 +32,10 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
     });
 });
 
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
+    Route::resource('galleries', 'GalleryController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+});
+
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     
     //login
