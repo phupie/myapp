@@ -1,8 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
+use App\Models\Gallery;
+use App\Models\Comment;
+use App\Models\Follower;
+use Storage;
 
 class GalleryController extends Controller
 {
@@ -11,9 +17,15 @@ class GalleryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Gallery $gallery)
     {
-        //
+        $user = auth()->user();
+        
+        $posts = Gallery::all()->sortByDesc('created_at');
+        return view('user.galleries.index', [
+            'user' => $user,
+            'posts' => $posts
+        ]);
     }
 
     /**
@@ -36,9 +48,22 @@ class GalleryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Gallery $gallery)
     {
-        //
+        $user = auth()->user();
+        $data = $request->all();
+        
+        $validator = Validator::make($data,[
+            'title' => ['required', 'string'],
+            'explanation' => ['required', 'string'],
+            'img' => ['required','file', 'image', 'mimes:jpeg,png,jpg'],
+            'areaName' => ['required', 'integer']
+        ]);
+        
+        $validator->validate();
+        $gallery->galleryStore($user->id, $data);
+        
+        return redirect('user/home');
     }
 
     /**

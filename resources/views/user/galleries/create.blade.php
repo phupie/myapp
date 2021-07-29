@@ -1,6 +1,16 @@
 @extends('layouts.user.app')
 
 @section('content')
+<script>
+    function previewImage(obj)
+    {
+    	var fileReader = new FileReader();
+    	fileReader.onload = (function() {
+    		document.getElementById('preview').src = fileReader.result;
+    	});
+    	fileReader.readAsDataURL(obj.files[0]);
+    }
+</script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
@@ -9,17 +19,18 @@
 
                 <div class="card-body">
                     
-                    <form method="POST" action="{{ route('galleries.store') }}">
+                    <form method="POST" action="{{ route('user.galleries.store') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group mb-0">
-                            <label for="explanation">あなたの一枚</label>
+                            <label for="img">あなたの一枚</label>
+                            <input class="form-control-file @error('img') is-invalid @enderror" type="file" name="img" onchange="previewImage(this);" autocomplete="img">
+                            @error('img')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        
-                        <div class="form-group m-0">
-                            <input type="file" accept='image/*' onchange="previewImage(this);">
-                        </div>
-                        
                         <div class="form-group m-0">
                             <img id="preview" class="w-100">
                         </div>
@@ -29,7 +40,7 @@
                                 <label for="title">タイトル</label>
                                 <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" required autocomplete="title" value="{{ old('title') }}">
 
-                                @error('explanation')
+                                @error('title')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -37,14 +48,14 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="area">エリア</label>
-                                <select id="area" type="text" class="form-control @error('area') is-invalid @enderror" name="area" required autocomplete="area">
+                                <select id="area" type="text" class="form-control @error('area') is-invalid @enderror" name="areaName" required autocomplete="area">
                                     @foreach(config('area') as $index => $name)
                                         <option value="" hidden>エリアを選択してください▼</option>
                                         <option value="{{ $index }}">{{ $name }}</option>
                                     @endforeach
                                 </select>
 
-                                @error('explanation')
+                                @error('area')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -77,14 +88,4 @@
         </div>
     </div>
 </div>
-<script>
-    function previewImage(obj)
-    {
-    	var fileReader = new FileReader();
-    	fileReader.onload = (function() {
-    		document.getElementById('preview').src = fileReader.result;
-    	});
-    	fileReader.readAsDataURL(obj.files[0]);
-    }
-</script>
 @endsection
