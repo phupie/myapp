@@ -75,11 +75,11 @@ class GalleryController extends Controller
     public function show(Gallery $gallery)
     {
         $user = auth()->user();
-        $gallery = $gallery->getGallery($gallery->id);
+        $galleries = $gallery->getGallery($gallery->id);
         
         return view('user.galleries.show', [
             'user' => $user,
-            'gallery' => $gallery
+            'galleries' => $galleries
         ]);
     }
 
@@ -89,9 +89,19 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Gallery $gallery)
     {
-        //
+        $user = auth()->user();
+        $galleries = $gallery->getEditGallery($user->id, $gallery->id);
+        
+        if (!isset($galleries)) {
+            return redirect('user/galleries');
+        }
+        
+        return view('user.galleries.edit',[
+            'user' => $user,
+            'galleries' => $galleries
+        ]);
     }
 
     /**
@@ -101,9 +111,20 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Gallery $gallery)
     {
-        //
+        $data = $request->all();
+        
+        $validator = Validator::make($data,[
+            'title' => ['required', 'string'],
+            'explanation' => ['required', 'string'],
+            'areaName' => ['required', 'integer']
+        ]);
+        
+        $validator->validate();
+        $gallery->galleryUpdate($data);
+        
+        return redirect('user/galleries');
     }
 
     /**
@@ -112,8 +133,11 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Gallery $gallery)
     {
-        //
+        $user = auth()->user();
+        $gallery->galleryDestroy($user->id, $gallery->id);
+        
+        return redirect('user/galleries');
     }
 }

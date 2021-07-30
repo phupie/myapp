@@ -49,7 +49,29 @@ class Gallery extends Model
     {
         return $this->with('user')->where('id',$gallery_id)->first();
     }
-    
+    //ギャラリー編集
+    public function getEditGallery(Int $user_id, Int $gallery_id)
+    {
+        return $this->where('user_id', $user_id)->where('id', $gallery_id)->first();
+    }
+    //編集
+    public function galleryUpdate(Array $data)
+    {
+        $this::where('id', $this->id)
+            ->update([
+                'title'       => $data['title'],
+                'explanation' => $data['explanation'],
+                'area'        => $data['areaName']
+            ]);
+        
+        return;
+    }
+    //削除
+    public function galleryDestroy(Int $user_id, Int $gallery_id)
+    {
+        return $this->where('user_id', $user_id)->where('id', $gallery_id)->delete();
+    }
+    //area変換
     public function getAreaNameAttribute()
     {
         return config('area.'.$this->area);
