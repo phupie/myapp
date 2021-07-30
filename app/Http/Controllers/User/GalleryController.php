@@ -20,8 +20,8 @@ class GalleryController extends Controller
     public function index(Gallery $gallery)
     {
         $user = auth()->user();
-        
         $posts = Gallery::all()->sortByDesc('created_at');
+        
         return view('user.galleries.index', [
             'user' => $user,
             'posts' => $posts
@@ -63,7 +63,7 @@ class GalleryController extends Controller
         $validator->validate();
         $gallery->galleryStore($user->id, $data);
         
-        return redirect('user/home');
+        return redirect('user/galleries');
     }
 
     /**
@@ -72,9 +72,15 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Gallery $gallery)
     {
-        //
+        $user = auth()->user();
+        $gallery = $gallery->getGallery($gallery->id);
+        
+        return view('user.galleries.show', [
+            'user' => $user,
+            'gallery' => $gallery
+        ]);
     }
 
     /**

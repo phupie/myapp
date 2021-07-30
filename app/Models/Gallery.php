@@ -30,7 +30,7 @@ class Gallery extends Model
     {
         return $this->hasMany(Comment::class);
     }
-    
+    //投稿
     public function galleryStore(Int $user_id, Array $data)
     {
         $this->user_id = $user_id;
@@ -43,6 +43,11 @@ class Gallery extends Model
         $this->save();
         
         return;
+    }
+    //ギャラリー取得
+    public function getGallery(Int $gallery_id)
+    {
+        return $this->with('user')->where('id',$gallery_id)->first();
     }
     
     public function getAreaNameAttribute()

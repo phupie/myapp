@@ -40,6 +40,9 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                            <li class="nav-item mr-5">
+                                <a class="nav-link" href="{{ url('user/galleries/create') }}">投稿する</a>
+                            </li>
                         @unless (Auth::guard('user')->check())
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('user.login') }}">{{ __('Login') }}</a>
