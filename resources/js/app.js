@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+require('jquery');
 
 window.Vue = require('vue');
 
@@ -30,3 +31,19 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+import Swal from 'sweetalert2';
+
+window.deleteConfirm = function(formId)
+{
+    Swal.fire({
+        text: '本当に削除してもよろしいですか？',
+        showCancelButton: true,
+        confirmButtonText: 'OK!',
+        confirmButtonColor: '#e3342f',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById(formId).submit();
+        }
+    });
+}

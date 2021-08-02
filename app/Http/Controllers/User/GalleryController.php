@@ -77,6 +77,7 @@ class GalleryController extends Controller
         $user = auth()->user();
         $galleries = $gallery->getGallery($gallery->id);
         
+        
         return view('user.galleries.show', [
             'user' => $user,
             'galleries' => $galleries

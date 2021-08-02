@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="display-3 font-italic text-center">Gallery</div>
-<div class="px-4 px-lg-5 mt-5">
+<div class="container-fluid px-4 px-lg-5 mt-5">
     <div class="row row-cols-md-2 row-cols-xl-3" data-masonry='{"percentPosition": true }'>
         @foreach($posts as $post)
             <div class="col mb-1 p-1">

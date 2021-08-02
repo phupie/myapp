@@ -30,6 +30,9 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
         //TOP page
         Route::resource('home', 'HomeController', ['only' => 'index']);
         
+        //profile
+        Route::resource('profiles', 'ProfileController', ['only' => ['create', 'store', 'edit', 'update']]);
+        
         //gallery
         Route::resource('galleries', 'GalleryController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
         

@@ -28,12 +28,12 @@
                                 <i class="fas fa-ellipsis-v fa-fw"></i>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <form method="POST" action="{{ url('user/galleries/' .$galleries->id) }}" class="mb-0">
+                                <form method="POST" action="{{ url('user/galleries/' .$galleries->id) }}" class="mb-0" id="delele">
                                     @csrf
                                     @method('DELETE')
 
-                                    <button type="submit" class="dropdown-item del-btn">削除</button>
                                     <a href="{{ url('user/galleries/' .$galleries->id .'/edit') }}" class="dropdown-item">編集</a>
+                                    <button type="submit" class="dropdown-item del-btn" onclick="deleteConfirm('delele');return false">削除</button>
                                 </form>
                             </div>
                         <div>

@@ -1,5 +1,7 @@
 @extends('layouts.user.app')
 
+@section('title', 'ギャラリー作成')
+
 @section('content')
 <script>
     function previewImage(obj)
@@ -64,10 +66,8 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="explanation">説明文
-                            </label>
-                            <textarea id="explanation" type="text" class="form-control @error('explanation') is-invalid @enderror" name="explanation" required autocomplete="explanation" row="4">{{ old('explanation') }}
-                            </textarea>
+                            <label for="explanation">説明文</label>
+                            <input id="explanation" type="text" class="form-control @error('explanation') is-invalid @enderror" name="explanation" required autocomplete="explanation" value="{{ old('explanation') }}" placeholder="例：〇〇エリアのこの場所で撮りました！"　rows="4">
                             @error('explanation')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
