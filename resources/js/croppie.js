@@ -65,7 +65,7 @@ $('#cropImageBtn-head').on('click', function (ev) {
         size: { width: 1500, height: 500 }
     }).then(function (resp) {
         $('#image-output-head').attr('src', resp);
-        $('#cropImage-head-head').val(resp);
+        $('#cropImage-head').val(resp);
         $('#cropImagePop-head').modal('hide');
     });
 });

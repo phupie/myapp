@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
+use App\Models\User;
 use Storage;
 
 class ProfileController extends Controller
@@ -28,10 +29,13 @@ class ProfileController extends Controller
     public function create()
     {
         $user = auth()->user();
+        if(empty($user->profile)) {
+            return view('user.profiles.create', [
+                'user' => $user
+            ]);
+        } 
         
-        return view('user.profiles.create', [
-            'user' => $user
-        ]);
+        return redirect('user/galleries');
     }
 
     /**
@@ -43,22 +47,19 @@ class ProfileController extends Controller
     public function store(Request $request,Profile $profile)
     {
         $user = auth()->user();
-        $data = $request->all;
+        $data = $request->all();
         
-        if (!$request->cropImage) {
-            return view('croppie');
-        }
-
-        $cropImageData = base64_decode(explode(",", explode(";", $request->cropImage)[1])[1]);
-
-        $imagePath = '/images/croppie_image.jpeg';
-
-        $storageImagePath = storage_path('app/public') . $imagePath;
-        \file_put_contents($storageImagePath, $cropImageData);
-
-        $publicImagePath = '/storage' . $imagePath;
+        $validator = Validator::make($data,[
+            'display_name' => ['required', 'string'],
+            'jobName' => ['required', 'integer'],
+            'storyName' => ['required', 'integer'],
+            'introduction' => ['required', 'string']
+        ]);
         
-        return redirect('user/profiles/create', compact('publicImagePath'));
+        $validator->validate();
+        $profile->profileStore($user->id, $data);
+        
+        return redirect('user/users/' . $user->id);
     }
 
     /**
@@ -78,9 +79,19 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Profile $profile)
     {
-        //
+        $user = auth()->user();
+        $profiles = $profile->getEditProfile($user->id, $profile->id);
+        
+        if (!isset($profiles)) {
+            return redirect('user/galleries');
+        }
+        
+        return view('user.profiles.edit',[
+            'user' => $user,
+            'profiles' => $profiles
+        ]);
     }
 
     /**
@@ -90,9 +101,21 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Profile $profile)
     {
-        //
+        $data = $request->all();
+        
+        $validator = Validator::make($data,[
+            'display_name' => ['required', 'string'],
+            'jobName' => ['required', 'integer'],
+            'storyName' => ['required', 'integer'],
+            'introduction' => ['required', 'string']
+        ]);
+        
+        $validator->validate();
+        $profile->profileUpdate($data);
+        
+        return redirect('user/galleries');
     }
 
     /**
@@ -101,8 +124,11 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Profile $profile)
     {
-        //
+        $user = auth()->user();
+        $profile->profileDestroy($user->id, $profile->id);
+        
+        return redirect('user/profiles/create');
     }
 }

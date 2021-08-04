@@ -161,7 +161,7 @@ $('#cropImageBtn-head').on('click', function (ev) {
     }
   }).then(function (resp) {
     $('#image-output-head').attr('src', resp);
-    $('#cropImage-head-head').val(resp);
+    $('#cropImage-head').val(resp);
     $('#cropImagePop-head').modal('hide');
   });
 }); //プロフィール画像
