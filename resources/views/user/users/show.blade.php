@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-8">
             <div class="card">
                 @if(isset($user->profile->head_img_path))
                     <img class="card-image-top" src="{{ asset( 'storage/profile_image/' .$user->profile->head_img_path) }}">

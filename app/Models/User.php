@@ -52,4 +52,8 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
     
+    public function getAllUsers(Int $user_id)
+    {
+        return $this->with('profile')->where('id', '<>', $user_id)->paginate(5);
+    }
 }

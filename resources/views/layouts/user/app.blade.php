@@ -45,7 +45,10 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto align-items-center">
                         <!-- Authentication Links -->
-                            <li class="nav-item mr-5">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('user/users') }}">ユーザー一覧</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ url('user/galleries/create') }}">投稿する</a>
                             </li>
                         @unless (Auth::guard('user')->check())
@@ -58,11 +61,9 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item">
-                                <img src="{{ asset('storage/profile_image/' .auth()->user()->profile->img_path) }}" class="rounded-circle" width="50" height="50">
-                            </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle py-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <img src="{{ asset('storage/profile_image/' .auth()->user()->profile->img_path) }}" class="rounded-circle" width="50" height="50">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

@@ -15,9 +15,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        //
+        $all_users = $user->getAllUsers(auth()->user()->id);
+        
+        return view('user.users.index', [
+            'all_users' => $all_users
+        ]);
     }
 
     /**

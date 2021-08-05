@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-8">
             <div class="card">
                 <img class="card-image-top" src="{{ asset('storage/image/' .$galleries->img_path) }}">
                 <div class="card-header d-flex w-100">
