@@ -36,7 +36,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+    //リレーション
     public function followers()
     {
         return $this->belongsToMany(self::class, 'followers', 'followed_id', 'following_id');
@@ -51,7 +51,27 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
-    
+    //フォロー
+    public function follow(Int $user_id)
+    {
+        return $this->follows()->attach($user_id);
+    }
+    //フォロー解除
+    public function unfollow(Int $user_id)
+    {
+        return $this->follows()->detach($user_id);
+    }
+    //フォローしてるか
+    public function isFollowing(Int $user_id)
+    {
+        return (boolean) $this->follows()->where('followed_id', $user_id)->first(['id']);
+    }
+    //フォローされているか
+    public function isFollowed(Int $user_id)
+    {
+        return (boolean) $this->followers()->where('following_id', $user_id)->first(['id']);
+    }
+    //ユーザー全件取得
     public function getAllUsers(Int $user_id)
     {
         return $this->with('profile')->where('id', '<>', $user_id)->paginate(5);

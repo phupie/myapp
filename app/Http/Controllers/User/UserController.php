@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Profile;
 use App\Models\User;
 use App\Models\Gallery;
+use App\Models\Follower;
 
 class UserController extends Controller
 {
@@ -95,5 +96,29 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    //フォロー
+    public function follow(User $user)
+    {
+        $follower = auth()->user();
+        //認証ユーザーが、$userをフォローしてるか
+        $is_following = $follower->isFollowing($user->id);
+        if(!$is_following) {
+            $follower->follow($user->id);
+            return back();
+        }
+    }
+    
+    //フォロー解除
+    public function unfollow(User $user)
+    {
+        $follower = auth()->user();
+        //認証ユーザーが、$userをフォローしてるか
+        $is_following = $follower->isFollowing($user->id);
+        if($is_following) {
+            $follower->unfollow($user->id);
+            return back();
+        }
     }
 }

@@ -33,6 +33,10 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
         //user
         Route::resource('users', 'UserController', ['only' => ['index', 'show']]);
         
+        //follow/unfollow
+        Route::post('users/{user}/follow', 'UserController@follow')->name('follow');
+        Route::delete('users/{user}/unfollow', 'UserController@unfollow')->name('unfollow');
+        
         //profile
         Route::resource('profiles', 'ProfileController', ['only' => ['create', 'store', 'edit', 'update',/*'destroy'*/]]);
         
