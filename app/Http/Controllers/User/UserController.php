@@ -52,15 +52,27 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user, Profile $profile)
+    public function show(User $user, Profile $profile, Gallery $gallery, Follower $follower)
     {
         $login_user = auth()->user();
         $profiles = $profile->getProfile($user->id);
+        $is_following = $login_user->isFollowing($user->id);
+        $is_followed = $login_user->isFollowed($user->id);
+        $timelines = $gallery->getUserTimeLine($user->id);
+        $gallery_count = $gallery->getGalleryCount($user->id);
+        $follow_count = $follower->getFollowCount($user->id);
+        $follower_count = $follower->getFollowerCount($user->id);
         
         
         return view('user.users.show', [
-            'user' => $user,
-            'profiles' => $profiles
+            'user'           => $user,
+            'profiles'       => $profiles,
+            'is_following'    => $is_following,
+            'is_followed'    => $is_followed,
+            'timelines'      => $timelines,
+            'gallery_count'  => $gallery_count,
+            'follow_count'   => $follow_count,
+            'follower_count' => $follower_count,
         ]);
     }
 

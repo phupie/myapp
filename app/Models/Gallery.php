@@ -49,6 +49,16 @@ class Gallery extends Model
     {
         return $this->with('user')->where('id',$gallery_id)->first();
     }
+    //ユーザーギャラリー取得
+    public function getUserTimeLine(Int $user_id)
+    {
+        return $this->where('user_id',$user_id)->orderBy('created_at', 'DESC')->get();
+    }
+    //ユーザーギャラリー数
+    public function getGalleryCount(Int $user_id)
+    {
+        return $this->where('user_id',$user_id)->count();
+    }
     //ギャラリー編集
     public function getEditGallery(Int $user_id, Int $gallery_id)
     {

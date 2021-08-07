@@ -43,6 +43,9 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
         //gallery
         Route::resource('galleries', 'GalleryController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
         
+        //comment
+        Route::resource('commnets', 'CommentController', ['only' => ['store']]);
+        
     });
 });
 
