@@ -17,14 +17,17 @@ class GalleryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Gallery $gallery)
+    public function index(Gallery $gallery, Follower $follower)
     {
         $user = auth()->user();
-        $posts = Gallery::all()->sortByDesc('created_at');
+        $follow_ids = $follower->followingIds($user->id);
+        $folloeing_ids = $follow_ids->pluck('followed_id')->toArray();
+        
+        $timelines = $gallery->getTimeLines($user->id, $folloeing_ids);
         
         return view('user.galleries.index', [
             'user' => $user,
-            'posts' => $posts
+            'timelines' => $timelines
         ]);
     }
 
@@ -72,15 +75,16 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Gallery $gallery)
+    public function show(Gallery $gallery, Comment $comment)
     {
         $user = auth()->user();
-        $galleries = $gallery->getGallery($gallery->id);
-        
+        $gallery = $gallery->getGallery($gallery->id);
+        $comments = $comment->getComments($gallery->id);
         
         return view('user.galleries.show', [
             'user' => $user,
-            'galleries' => $galleries
+            'gallery' => $gallery,
+            'comments' => $comments
         ]);
     }
 

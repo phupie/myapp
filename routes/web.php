@@ -46,6 +46,9 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
         //comment
         Route::resource('commnets', 'CommentController', ['only' => ['store']]);
         
+        //favorite
+        Route::resource('favorites', 'FavoriteController', ['only' => ['store', 'destroy']]);
+        
     });
 });
 

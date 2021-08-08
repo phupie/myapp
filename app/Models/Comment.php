@@ -27,4 +27,9 @@ class Comment extends Model
         
         return;
     }
+    
+    public function getComments(Int $gallery_id)
+    {
+        return $this->with('user')->where('gallery_id', $gallery_id)->get();
+    }
 }

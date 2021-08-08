@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\ControllersUser;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use App\Models\Comment;
+use App\Http\Controllers\Controller;
+use App\Models\Favorite;
 
-class CommentController extends Controller
+class FavoriteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,18 +34,16 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Comment $comment)
+    public function store(Request $request, Favorite $favorite)
     {
         $user = auth()->user();
-        $data = $request->all();
-        $validator = Validator::make($data,[
-            'gallery_id' => ['required', 'integer'],
-            'text' => ['required', 'string']
-        ]);
+        $gallery_id = $request->gallery_id;
+        $is_favorite = $favorite->isFavorite($user->id, $gallery_id);
         
-        $validator->validate();
-        $comment->commentStore($user->id, $data);
-        
+        if(!$is_favorite) {
+            $favorite->storeFavorite($user->id, $gallery_id);
+            return back();
+        }
         return back();
     }
 
@@ -89,8 +87,17 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Favorite $favorite)
     {
-        //
+        $user_id = $favorite->user_id;
+        $gallery_id = $favorite->gallery_id;
+        $favorite_id = $favorite->id;
+        $is_favorite = $favorite->isFavorite($user_id, $gallery_id);
+        
+        if($is_favorite) {
+            $favorite->destroyFavorite($favorite_id);
+            return back();
+        }
+        return back();
     }
 }
