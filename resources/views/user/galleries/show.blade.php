@@ -3,16 +3,24 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12 mb-3">
             <div class="card">
                 <img class="card-image-top" src="{{ asset('storage/image/' .$gallery->img_path) }}">
-                <div class="card-header d-flex w-100">
-                    <div class="mb-0 d-flex pr-2">{{ $gallery->user->name }}</div>
-                    <div class="mb-0 text-secondary d-flex justify-content-end flex-grow-1">
-                        {{ $gallery->created_at->format('Y-m-d H:i') }}
-                    </div>
-                </div>
                 <div class="card-body">
+                    <div class="d-flex mb-3">
+                        @if(isset($gallery->user->profile->img_path))
+                            <img class="rounded-circle mr-3" src="{{ asset( 'storage/profile_image/' .$gallery->user->profile->img_path) }}" width="50" height="50">
+                        @else
+                            <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="50" height="50">
+                        @endif
+                        <div class="ml-2 d-flex flex-column">
+                            <a href="{{ url('user/users/' .$gallery->user->id) }}" class="mb-0 text-body">{{ $gallery->user->profile->display_name }}</a>
+                            <a href="{{ url('user/users/' .$gallery->user->id) }}" class="text-secondary">＠{{ $gallery->user->name }}</a>
+                        </div>
+                        <div class="mb-0 text-secondary d-flex justify-content-end flex-grow-1">
+                            {{ $gallery->created_at->format('Y-m-d H:i') }}
+                        </div>
+                    </div>
                     <h4>
                         {{ $gallery->title }}
                         <small class="text-muted">
@@ -36,26 +44,22 @@
                                     <button type="submit" class="dropdown-item del-btn" onclick="deleteConfirm('delele');return false">削除</button>
                                 </form>
                             </div>
-                        <div>
+                        </div>
                     @endif
                     <div class="mr-3 d-flex align-items-center">
-                        <a href="{{ url('tweets/' .$gallery->id) }}"><i class="far fa-comment fa-fw"></i></a>
+                        <a href="{{ url('user/galleries/' .$gallery->id) }}"><i class="far fa-comment fa-fw"></i></a>
                         <p class="mb-0 text-secondary">{{ count($gallery->comments) }}</p>
                     </div>
                     <div class="d-flex align-items-center">
-                        <button type="" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
-                        <p class="mb-0 text-secondary">{{ count($gallery->favorites) }}</p>
-                    </div>
-                    <div class="d-flex align-items-center">
                         @if (!in_array($user->id, array_column($gallery->favorites->toArray(), 'user_id'), TRUE))
-                            <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
+                            <form method="POST" action="{{ url('user/favorites/') }}" class="mb-0">
                                 @csrf
 
-                                <input type="hidden" name="tweet_id" value="{{ $gallery->id }}">
+                                <input type="hidden" name="gallery_id" value="{{ $gallery->id }}">
                                 <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
                             </form>
                         @else
-                            <form method="POST" action="{{ url('favorites/' .array_column($gallery->favorites->toArray(), 'id', 'user_id')[$user->id]) }}" class="mb-0">
+                            <form method="POST" action="{{ url('user/favorites/' .array_column($gallery->favorites->toArray(), 'id', 'user_id')[$user->id]) }}" class="mb-0">
                                 @csrf
                                 @method('DELETE')
 
@@ -63,72 +67,81 @@
                             </form>
                         @endif
                         <p class="mb-0 text-secondary">{{ count($gallery->favorites) }}</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row justify-content-center">
-        <div class="col-md-8 mb-3">
-            <ul class="list-group">
-                @forelse ($comments as $comment)
+    <div class="row justify-content-center">
+            <div class="col-md-8 mb-3">
+                <ul class="list-group">
+                    @forelse ($comments as $comment)
+                        <li class="list-group-item">
+                            <div class="py-3 w-100 d-flex">
+                                @if(isset($comment->user->profile->img_path))
+                                    <img class="rounded-circle mr-3" src="{{ asset( 'storage/profile_image/' .$comment->user->profile->img_path) }}" width="50" height="50">
+                                @else
+                                    <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="50" height="50">
+                                @endif
+                                <div class="ml-2 d-flex flex-column">
+                                    <a href="{{ url('user/users/' .$comment->user->id) }}" class="mb-0 text-body">{{ $comment->user->profile->display_name }}</a>
+                                    <a href="{{ url('user/users/' .$comment->user->id) }}" class="text-secondary">＠{{ $comment->user->name }}</a>
+                                </div>
+                                <div class="d-flex justify-content-end flex-grow-1">
+                                    <p class="mb-0 text-secondary">{{ $comment->created_at->format('Y-m-d H:i') }}</p>
+                                </div>
+                            </div>
+                            <div class="py-3">
+                                {!! nl2br(e($comment->text)) !!}
+                            </div>
+                        </li>
+                    @empty
+                        <li class="list-group-item">
+                            <p class="mb-0 text-secondary">コメントはまだありません。</p>
+                        </li>
+                    @endforelse
                     <li class="list-group-item">
-                        <div class="py-3 w-100 d-flex">
-                            <img src="{{ asset('storage/profile_image/' .$comment->user->profile_image) }}" class="rounded-circle" width="50" height="50">
-                            <div class="ml-2 d-flex flex-column">
-                                <p class="mb-0">{{ $comment->user->name }}</p>
-                                <a href="{{ url('users/' .$comment->user->id) }}" class="text-secondary">{{ $comment->user->screen_name }}</a>
-                            </div>
-                            <div class="d-flex justify-content-end flex-grow-1">
-                                <p class="mb-0 text-secondary">{{ $comment->created_at->format('Y-m-d H:i') }}</p>
-                            </div>
-                        </div>
                         <div class="py-3">
-                            {!! nl2br(e($comment->text)) !!}
-                        </div>
-                    </li>
-                @empty
-                    <li class="list-group-item">
-                        <p class="mb-0 text-secondary">コメントはまだありません。</p>
-                    </li>
-                @endforelse
-                <li class="list-group-item">
-                    <div class="py-3">
-                        <form method="POST" action="{{ route('comments.store') }}">
-                            @csrf
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-12 p-3 w-100 d-flex">
-                                    <img src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="rounded-circle" width="50" height="50">
-                                    <div class="ml-2 d-flex flex-column">
-                                        <p class="mb-0">{{ $user->name }}</p>
-                                        <a href="{{ url('users/' .$user->id) }}" class="text-secondary">{{ $user->screen_name }}</a>
+                            <form method="POST" action="{{ route('user.comments.store') }}">
+                                @csrf
+    
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-12 p-3 w-100 d-flex">
+                                        @if(isset($user->profile->img_path))
+                                            <img class="rounded-circle mr-3" src="{{ asset( 'storage/profile_image/' .$user->profile->img_path) }}" width="50" height="50">
+                                        @else
+                                            <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="50" height="50">
+                                        @endif
+                                        <div class="ml-2 d-flex flex-column">
+                                            <a href="{{ url('user/users/' .$user->id) }}" class="mb-0 text-body">{{ $user->profile->display_name }}</a>
+                                            <a href="{{ url('user/users/' .$user->id) }}" class="text-secondary">＠{{ $user->name }}</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="hidden" name="gallery_id" value="{{ $gallery->id }}">
+                                        <textarea class="form-control @error('text') is-invalid @enderror" name="text" required autocomplete="text" rows="4">{{ old('text') }}</textarea>
+    
+                                        @error('text')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
-                                    <textarea class="form-control @error('text') is-invalid @enderror" name="text" required autocomplete="text" rows="4">{{ old('text') }}</textarea>
-
-                                    @error('text')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+    
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-12 text-right">
+                                        <p class="mb-4 text-danger">140文字以内</p>
+                                        <button type="submit" class="btn btn-primary">
+                                            コメントする
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-12 text-right">
-                                    <p class="mb-4 text-danger">140文字以内</p>
-                                    <button type="submit" class="btn btn-primary">
-                                        ツイートする
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </li>
-            </ul>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

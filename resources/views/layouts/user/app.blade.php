@@ -55,7 +55,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('user.login') }}">{{ __('Login') }}</a>
                             </li>
-                            @if (Route::has('register'))
+                            @if (Route::has('user.register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('user.register') }}">{{ __('Register') }}</a>
                                 </li>
@@ -63,8 +63,10 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle py-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                @if(isset(auth()->user()->profile))
                                 <img src="{{ asset('storage/profile_image/' .auth()->user()->profile->img_path) }}" class="rounded-circle" width="50" height="50">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                @endif
+                                    ＠{{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

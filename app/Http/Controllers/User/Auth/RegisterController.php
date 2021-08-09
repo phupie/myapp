@@ -83,4 +83,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+    
+    //新規登録後のリダイレクト先をプロフィール作成画面に
+    public function redirectPath()
+    {
+        return 'user/profiles/create';
+    }
 }

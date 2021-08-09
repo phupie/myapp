@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\ControllersUser;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
 use App\Models\Comment;
 
 class CommentController extends Controller

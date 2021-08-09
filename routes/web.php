@@ -44,7 +44,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
         Route::resource('galleries', 'GalleryController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
         
         //comment
-        Route::resource('commnets', 'CommentController', ['only' => ['store']]);
+        Route::resource('comments', 'CommentController', ['only' => ['store']]);
         
         //favorite
         Route::resource('favorites', 'FavoriteController', ['only' => ['store', 'destroy']]);

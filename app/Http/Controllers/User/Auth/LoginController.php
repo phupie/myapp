@@ -61,4 +61,10 @@ class LoginController extends Controller
     {
         return redirect(route('user.login'));
     }
+    
+    //ログイン後のリダイレクト先
+    public function redirectPath()
+    {
+        return 'user/profiles/create';
+    }
 }
