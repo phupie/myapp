@@ -30,9 +30,15 @@ class Gallery extends Model
     {
         return $this->hasMany(Comment::class);
     }
+    
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'gallery_tag');
+    }
     //投稿
     public function galleryStore(Int $user_id, Array $data)
     {
+        
         $this->user_id = $user_id;
         $this->title = $data['title'];
         $this->explanation = $data['explanation'];
@@ -41,6 +47,7 @@ class Gallery extends Model
         $path = $data['img']->store('public/image/');
         $this->img_path = basename($path);
         $this->save();
+        
         
         return;
     }

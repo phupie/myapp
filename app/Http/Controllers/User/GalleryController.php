@@ -5,9 +5,11 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Models\Gallery;
 use App\Models\Comment;
 use App\Models\Follower;
+use App\Models\Tag;
 use Storage;
 
 class GalleryController extends Controller
@@ -53,6 +55,7 @@ class GalleryController extends Controller
      */
     public function store(Request $request, Gallery $gallery)
     {
+        
         $user = auth()->user();
         $data = $request->all();
         
@@ -66,6 +69,21 @@ class GalleryController extends Controller
         $validator->validate();
         $gallery->galleryStore($user->id, $data);
         
+        preg_match_all('/#([a-zA-z0-9０-９ぁ-んァ-ヶ亜-熙]+)/u', $request->tags, $match);
+        
+        $tags = [];
+        foreach ($match[1] as $tag) {
+            $record = Tag::firstOrCreate(['name' => $tag]); // firstOrCreateメソッドで、tags_tableのnameカラムに該当のない$tagは新規登録される。
+            array_push($tags, $record); // $recordを配列に追加します(=$tags)
+        };
+
+        // 投稿に紐付けされるタグのidを配列化
+        $tags_id = [];
+        foreach ($tags as $tag) {
+            array_push($tags_id, $tag['id']);
+        };
+        $gallery->tags()->attach($tags_id);
+        
         return redirect('user/galleries');
     }
 
@@ -75,7 +93,7 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Gallery $gallery, Comment $comment)
+    public function show(Gallery $gallery, Comment $comment, Tag $tag)
     {
         $user = auth()->user();
         $gallery = $gallery->getGallery($gallery->id);

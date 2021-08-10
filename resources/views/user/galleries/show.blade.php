@@ -27,6 +27,11 @@
                             {{ $gallery->areaName }}
                         </small>
                     </h4>
+                    <div>
+                    	@foreach($gallery->tags as $tag)
+                		    <span class="badge badge-pill badge-info">{{$tag->name}}</span>
+                        @endforeach
+                    </div>
                     <p>{!! nl2br(e($gallery->explanation)) !!}</p>
                 </div>
                 <div class="card-footer py-1 d-flex justify-content-end">

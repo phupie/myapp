@@ -66,6 +66,18 @@
                         </div>
                         
                         <div class="form-group">
+                            <label for="tags">タグ</label>
+                            <input id="tags" type="tags" class="form-control @error('tags') is-invalid @enderror" name="tags" required autocomplete="tags" value="{{ old('tags') }}">
+                            @error('tags')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <div class="col-md-12">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
                             <label for="explanation">説明文</label>
                             <input id="explanation" type="text" class="form-control @error('explanation') is-invalid @enderror" name="explanation" required autocomplete="explanation" value="{{ old('explanation') }}" placeholder="例：〇〇エリアのこの場所で撮りました！"　rows="4">
                             @error('explanation')
