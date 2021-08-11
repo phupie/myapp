@@ -141,6 +141,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'g-recaptcha-response' => '上記チェック'
+    ],
 
 ];

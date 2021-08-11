@@ -62,6 +62,15 @@ class LoginController extends Controller
         return redirect(route('user.login'));
     }
     
+    public function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'g-recaptcha-response' => 'required|captcha',
+        ]);
+    }
+    
     //ログイン後のリダイレクト先
     public function redirectPath()
     {
