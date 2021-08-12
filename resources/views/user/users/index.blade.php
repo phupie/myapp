@@ -14,7 +14,7 @@
                             <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="50" height="50">
                         @endif
                         <div class="ml-2 d-flex flex-column">
-                            <a href="{{ url('user/users/' .$user->id) }}" class="text-body mb-0">{{ $user->profile->display_name }}</a>
+                            <a href="{{ url('user/users/' .$user->id) }}" class=" text-light mb-0">{{ $user->profile->display_name }}</a>
                             <a href="{{ url('user/users/' .$user->id) }}" class="text-secondary">＠{{ $user->name }}</a>
                         </div>
                         @if (auth()->user()->isFollowed($user->id))

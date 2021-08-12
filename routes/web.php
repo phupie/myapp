@@ -24,6 +24,8 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
         'verify'   => false
     ]);
     
+    Route::get('login/google', 'Auth\LoginController@redirectToGoogle');
+    Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
     //after login
     Route::middleware('auth:user')->group(function(){
         

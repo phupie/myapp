@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card text-light">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
@@ -79,6 +79,13 @@
                             </div>
                         </div>
                     </form>
+                    <div class="form-group row mt-2">
+                        <div class="col-md-8 offset-md-4">
+                            <a href="login/google" class="btn btn-secondary" role="button">
+                                Google Login
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

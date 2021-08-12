@@ -14,8 +14,8 @@
                         <div class="card-footer d-flex bd-highlight w-100 py-1">
                             <img src="{{ asset('storage/profile_image/' .$timeline->user->profile->img_path) }}" class="rounded-circle mr-1" width="30" height="30">
                             <div class="mr-3 d-flex align-items-center mr-auto">
-                                <a href="{{ url('user/users/' .$timeline->user->id) }}" class="text-body mr-1">{{ $timeline->user->profile->display_name }}</a>
-                                <p class="mb-0 text-secondary ">＠{{ $timeline->user->name }}</p>
+                                <a href="{{ url('user/users/' .$timeline->user->id) }}" class="text-light mr-1">{{ $timeline->user->profile->display_name }}</a>
+                                <p class="mb-0 text-secondary">＠{{ $timeline->user->name }}</p>
                                 <div class="mb-0 text-secondary mr-auto small">
                                 ・{{ $timeline->created_at->format('Y-m-d H:i') }}
                                 </div>

@@ -7,6 +7,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -75,5 +77,28 @@ class LoginController extends Controller
     public function redirectPath()
     {
         return 'user/profiles/create';
+    }
+    
+    public function redirectToGoogle()
+    {
+        // Google へのリダイレクト
+        return Socialite::driver('google')->redirect();
+    }
+    
+    public function handleGoogleCallback()
+    {
+        $googleUser = Socialite::driver('google')->user();
+        $user = User::firstOrNew(['email' => $googleUser->email]);
+
+        if (!$user->exists) {
+            $user['name'] = $googleUser->getNickName() ?? $googleUser->getName() ?? $googleUser->getNick();
+            $user['email'] = $googleUser->email; // Gmailアドレス
+            $user['password'] = str_random(); // 適当に生成
+
+            $user->save();
+        }
+
+        Auth::login($user);
+        return redirect()->route('user.galleries.index');
     }
 }

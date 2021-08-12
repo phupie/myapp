@@ -10,7 +10,7 @@
                 @else
                     <img class="card-image-top" src="{{ asset( 'storage/image/795112796565.png') }}">
                 @endif
-                <div class="card-body">
+                <div class="card-body text-light">
                     <div class="d-md-flex flex-row bd-highlight mb-3">
                         <div class="d-flex mb-3">
                             @if(isset($user->profile->img_path))
@@ -23,30 +23,33 @@
                                     <span class="text-secondary">＠{{ $user->name }}</span>
                                 </div>
                         </div>
-                    @if ($user->id === Auth::user()->id)
-                        <div class="d-flex flex-md-column bd-highlight mt-1 mb-auto ml-auto">
-                            <a href="{{ url('user/profiles/' .$user->profile->id .'/edit') }}" class="btn btn-primary d-flex">プロフィールを編集する</a>
+                        <div class="ml-auto">
+                            @if ($user->id === Auth::user()->id)
+                                <div class="d-flex flex-md-column bd-highlight mt-1 mb-auto ml-auto">
+                                    <a href="{{ url('user/profiles/' .$user->profile->id .'/edit') }}" class="btn btn-primary d-flex">プロフィールを編集する</a>
+                                </div>
+                            @else
+                                @if ($is_following)
+                                    <form action="{{ route('user.unfollow', $user->id) }}" method="POST" class="d-flex flex-md-column bd-highlight mb-2">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+        
+                                            <button type="submit" class="btn btn-danger">フォロー解除</button>
+                                    </form>
+                                @else
+                                    <form action="{{ route('user.follow', $user->id) }}" method="POST" class="d-flex flex-md-column bd-highlight mb-2">
+                                        {{ csrf_field() }}
+        
+                                            <button type="submit" class="btn btn-primary">フォローする</button>
+                                    </form>
+                                @endif
+        
+                                @if ($is_followed)
+                                    <span class="mt-2 px-1 bg-secondary text-light">フォローされています</span>
+                                @endif
+                            @endif
+                            
                         </div>
-                    @else
-                        @if ($is_following)
-                            <form action="{{ route('user.unfollow', $user->id) }}" method="POST" class="d-flex flex-md-column bd-highlight mt-1 mb-auto ml-auto">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-
-                                    <button type="submit" class="btn btn-danger">フォロー解除</button>
-                            </form>
-                        @else
-                            <form action="{{ route('user.follow', $user->id) }}" method="POST" class="d-flex flex-md-column bd-highlight mt-1 mb-auto ml-auto">
-                                {{ csrf_field() }}
-
-                                    <button type="submit" class="btn btn-primary">フォローする</button>
-                            </form>
-                        @endif
-
-                        @if ($is_followed)
-                            <span class="mt-2 px-1 bg-secondary text-light">フォローされています</span>
-                        @endif
-                    @endif
                     </div>
                     <div class="d-flex flex-column">
                         <h5>自己紹介</h5>
