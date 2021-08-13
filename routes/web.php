@@ -49,7 +49,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
         Route::resource('comments', 'CommentController', ['only' => ['store']]);
         
         //favorite
-        Route::resource('favorites', 'FavoriteController', ['only' => ['store', 'destroy']]);
+        Route::post('favorites', 'FavoriteController@favorite')->name('favorite');
         
     });
 });

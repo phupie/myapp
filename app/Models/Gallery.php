@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Favorite;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Gallery extends Model
@@ -54,7 +55,7 @@ class Gallery extends Model
     //ギャラリー取得
     public function getGallery(Int $gallery_id)
     {
-        return $this->with('user')->where('id',$gallery_id)->first();
+        return $this->withCount('favorites')->with('user')->where('id',$gallery_id)->first();
     }
     //ユーザーギャラリー取得
     public function getUserTimeLine(Int $user_id)
@@ -65,7 +66,7 @@ class Gallery extends Model
     public function getTimeLines(Int $user_id, Array $follow_ids)
     {
         $follow_ids[] = $user_id;
-        return $this->whereIn('user_id',$follow_ids)->orderBy('created_at', 'DESC')->get();
+        return $this->withCount('favorites')->whereIn('user_id',$follow_ids)->orderBy('created_at', 'DESC')->get();
     }
     //ユーザーギャラリー数
     public function getGalleryCount(Int $user_id)
@@ -93,6 +94,11 @@ class Gallery extends Model
     public function galleryDestroy(Int $user_id, Int $gallery_id)
     {
         return $this->where('user_id', $user_id)->where('id', $gallery_id)->delete();
+    }
+    //いいねされているか
+    public function isFavorited($user): bool 
+    {
+        return Favorite::where('user_id', $user->id)->where('gallery_id', $this->id)->first() !==null;
     }
     //area変換
     public function getAreaNameAttribute()

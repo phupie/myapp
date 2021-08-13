@@ -7,11 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Favorite extends Model
 {
     public $timestamps = false;
-    //いいねしてるか
-    public function isFavorite(Int $user_id, Int $gallery_id)
+    
+    public function user()
     {
-        return (boolean) $this->where('user_id', $user_id)->where('gallery_id', $gallery_id)->first();
+        return $this->belongTo(User::class);
     }
+    
+    public function gallery()
+    {
+        return $this->belongTo(Gallery::class);
+    }
+    
     //いいねする
     public function storeFavorite(Int $user_id, Int $gallery_id)
     {
@@ -20,8 +26,8 @@ class Favorite extends Model
         $this->save();
     }
     //いいね解除
-    public function destroyFavorite(Int $favorite_id)
+    public function destroyFavorite(Int $user_id, Int $gallery_id)
     {
-        return $this->where('id', $favorite_id)->delete();
+        return $this->where('user_id', $user_id)->where('gallery_id', $gallery_id)->delete();
     }
 }

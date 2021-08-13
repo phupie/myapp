@@ -23,25 +23,21 @@
                             <div class="py-1 d-flex justify-content-end">
                                 <div class="mr-3 d-flex align-items-center">
                                     <a href="{{ url('user/galleries/' .$timeline->id) }}"><i class="far fa-comment fa-fw"></i></a>
-                                    <p class="mb-0 text-secondary">{{ count($timeline->comments) }}</p>
+                                    <p class="mb-0 text-secondary">{{$timeline->favorites_count}}</p>
                                 </div>
                                 <div class="d-flex align-items-center">
-                                    @if (!in_array($user->id, array_column($timeline->favorites->toArray(), 'user_id'), TRUE))
-                                        <form method="POST" action="{{ url('user/favorites/') }}" class="mb-0">
-                                            @csrf
-    
-                                            <input type="hidden" name="gallery_id" value="{{ $timeline->id }}">
-                                            <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
-                                        </form>
-                                    @else
-                                        <form method="POST" action="{{ url('user/favorites/' .array_column($timeline->favorites->toArray(), 'id', 'user_id')[$user->id]) }}" class="mb-0">
-                                            @csrf
-                                            @method('DELETE')
-    
-                                            <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
-                                        </form>
-                                    @endif
-                                    <p class="mb-0 text-secondary">{{ count($timeline->favorites) }}</p>
+                                      <!-- Review.phpに作ったisLikedByメソッドをここで使用 -->
+                                      @if (!$timeline->isFavorited(Auth::user()))
+                                        <span class="favorites">
+                                            <i class="far fa-heart fa-fw favorite-toggle" data-gallery-id="{{ $timeline->id }}"></i>
+                                          <span class="favorite-counter text-secondary">{{$timeline->favorites_count}}</span>
+                                        </span><!-- /.likes -->
+                                      @else
+                                        <span class="favorites">
+                                            <i class="far fa-heart fa-fw favorite-toggle favorited" data-gallery-id="{{ $timeline->id }}"></i>
+                                          <span class="favorite-counter text-secondary">{{$timeline->favorites_count}}</span>
+                                        </span><!-- /.likes -->
+                                      @endif
                                 </div>
                             </div>
                         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Favorite;
+use App\Models\Gallery;
 
 class FavoriteController extends Controller
 {
@@ -36,15 +37,7 @@ class FavoriteController extends Controller
      */
     public function store(Request $request, Favorite $favorite)
     {
-        $user = auth()->user();
-        $gallery_id = $request->gallery_id;
-        $is_favorite = $favorite->isFavorite($user->id, $gallery_id);
-        
-        if(!$is_favorite) {
-            $favorite->storeFavorite($user->id, $gallery_id);
-            return back();
-        }
-        return back();
+        //
     }
 
     /**
@@ -89,15 +82,27 @@ class FavoriteController extends Controller
      */
     public function destroy(Favorite $favorite)
     {
-        $user_id = $favorite->user_id;
-        $gallery_id = $favorite->gallery_id;
-        $favorite_id = $favorite->id;
-        $is_favorite = $favorite->isFavorite($user_id, $gallery_id);
-        
-        if($is_favorite) {
-            $favorite->destroyFavorite($favorite_id);
-            return back();
+        //
+    }
+    
+    public function favorite(Request $request, Favorite $favorite)
+    {
+        $user_id = auth()->user()->id;
+        $gallery_id = $request->gallery_id;
+        $already_favorited = Favorite::where('user_id', $user_id)->where('gallery_id', $gallery_id)->first(); //3.
+
+        if (!$already_favorited) { //もしこのユーザーがこの投稿にまだいいねしてなかったら
+            $favorite->gallery_id = $gallery_id; //Likeインスタンスにreview_id,user_idをセット
+            $favorite->user_id = $user_id;
+            $favorite->save();
+        } else { //もしこのユーザーがこの投稿に既にいいねしてたらdelete
+            Favorite::where('gallery_id', $gallery_id)->where('user_id', $user_id)->delete();
         }
-        return back();
+        //5.この投稿の最新の総いいね数を取得
+        $gallery_favorites_count = Gallery::withCount('favorites')->findOrFail($gallery_id)->favorites_count;
+        $param = [
+            'gallery_favorites_count' => $gallery_favorites_count,
+        ];
+        return response()->json($param); //6.JSONデータをjQueryに返す
     }
 }

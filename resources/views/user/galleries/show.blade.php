@@ -56,22 +56,17 @@
                         <p class="mb-0 text-secondary">{{ count($gallery->comments) }}</p>
                     </div>
                     <div class="d-flex align-items-center">
-                        @if (!in_array($user->id, array_column($gallery->favorites->toArray(), 'user_id'), TRUE))
-                            <form method="POST" action="{{ url('user/favorites/') }}" class="mb-0">
-                                @csrf
-
-                                <input type="hidden" name="gallery_id" value="{{ $gallery->id }}">
-                                <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
-                            </form>
+                        @if (!$gallery->isFavorited(Auth::user()))
+                            <span class="favorites">
+                                <i class="far fa-heart fa-fw favorite-toggle" data-gallery-id="{{ $gallery->id }}"></i>
+                                <span class="favorite-counter text-secondary">{{$gallery->favorites_count}}</span>
+                            </span><!-- /.likes -->
                         @else
-                            <form method="POST" action="{{ url('user/favorites/' .array_column($gallery->favorites->toArray(), 'id', 'user_id')[$user->id]) }}" class="mb-0">
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
-                            </form>
+                        <span class="favorites">
+                            <i class="far fa-heart fa-fw favorite-toggle favorited" data-gallery-id="{{ $gallery->id }}"></i>
+                            <span class="favorite-counter text-secondary">{{$gallery->favorites_count}}</span>
+                        </span><!-- /.likes -->
                         @endif
-                        <p class="mb-0 text-secondary">{{ count($gallery->favorites) }}</p>
                     </div>
                 </div>
             </div>
