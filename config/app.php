@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         //google login
         Laravel\Socialite\SocialiteServiceProvider::class,
+        App\Providers\SearchServiceProvider::class,
 
     ],
 
@@ -229,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         //google login
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Search' => App\Facades\Search::class,
 
     ],
 

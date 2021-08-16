@@ -11,6 +11,7 @@ use App\Models\Comment;
 use App\Models\Follower;
 use App\Models\Tag;
 use Storage;
+use App\Facades\Search;
 
 class GalleryController extends Controller
 {
@@ -162,5 +163,17 @@ class GalleryController extends Controller
         $gallery->galleryDestroy($user->id, $gallery->id);
         
         return redirect('user/galleries');
+    }
+    
+    public function search(Request $request)
+    {
+        $keyword = $request->keyword;
+        
+        list($galleries,$message) = Search::searchGallery($keyword);
+        
+        return view('user/galleries/search',[
+            'galleries' => $galleries,
+            'message' => $message
+        ]);
     }
 }

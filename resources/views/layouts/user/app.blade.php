@@ -32,7 +32,7 @@
         <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('user/galleries') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="/storage/sample/1_Primary_logo_on_transparent_414x63.png" height="40">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -41,7 +41,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <form class="d-flex" action="{{ url('user/galleries/search') }}" method="post">
+                            @csrf
+                            @method('GET')
+                            <input type="text" class="form-control me-2" type="search" placeholder="フリーワード検索" aria-label="Search" name="keyword">
+                            <button class="btn btn-outline-light" type="submit"><i class="px-2 fas fa-search"></i></button>
+                        </form>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

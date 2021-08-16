@@ -43,8 +43,8 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
         Route::resource('profiles', 'ProfileController', ['only' => ['create', 'store', 'edit', 'update',/*'destroy'*/]]);
         
         //gallery
+        Route::get('galleries/search', 'GalleryController@search');
         Route::resource('galleries', 'GalleryController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
-        
         //comment
         Route::resource('comments', 'CommentController', ['only' => ['store']]);
         
