@@ -28,6 +28,11 @@ class Comment extends Model
         return;
     }
     
+    public function getComment(Int $comment_id)
+    {
+        return $this->with('user')->where('id', $comment_id)->first();
+    }
+    
     public function getComments(Int $gallery_id)
     {
         return $this->with('user')->where('gallery_id', $gallery_id)->get();

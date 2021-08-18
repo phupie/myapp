@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::namespace('User')->prefix('user')->name('user.')->group(function(){
@@ -46,10 +46,13 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
         Route::get('galleries/search', 'GalleryController@search');
         Route::resource('galleries', 'GalleryController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
         //comment
-        Route::resource('comments', 'CommentController', ['only' => ['store']]);
+        Route::resource('comments', 'CommentController', ['only' => ['store', 'show']]);
         
         //favorite
         Route::post('favorites', 'FavoriteController@favorite')->name('favorite');
+        
+        //report
+        Route::resource('reports', 'ReportController',['only' => ['store']]);
         
     });
 });

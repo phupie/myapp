@@ -23,7 +23,7 @@
                             <div class="py-1 d-flex justify-content-end">
                                 <div class="mr-3 d-flex align-items-center">
                                     <a href="{{ url('user/galleries/' .$timeline->id) }}"><i class="far fa-comment fa-fw"></i></a>
-                                    <p class="mb-0 text-secondary">{{$timeline->favorites_count}}</p>
+                                    <p class="mb-0 text-secondary">{{ count($timeline->comments) }}</p>
                                 </div>
                                 <div class="d-flex align-items-center">
                                       <!-- Review.phpに作ったisLikedByメソッドをここで使用 -->

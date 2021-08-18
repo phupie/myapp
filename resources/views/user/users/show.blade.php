@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card text-light">
                 @if(isset($user->profile->head_img_path))
                     <img class="card-image-top" src="{{ asset( 'storage/profile_image/' .$user->profile->head_img_path) }}">
                 @else
@@ -19,14 +19,18 @@
                                 <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="150" height="150">
                             @endif
                                 <div class="align-self-center">
-                                    <h4>{{ $user->profile->display_name }}</h4>
+                                    <h4>@if(!empty($user->profile)){{ $user->profile->display_name }}@else匿名@endif</h4>
                                     <span class="text-secondary">＠{{ $user->name }}</span>
                                 </div>
                         </div>
                         <div class="ml-auto">
                             @if ($user->id === Auth::user()->id)
                                 <div class="d-flex flex-md-column bd-highlight mt-1 mb-auto ml-auto">
-                                    <a href="{{ url('user/profiles/' .$user->profile->id .'/edit') }}" class="btn btn-primary d-flex">プロフィールを編集する</a>
+                                    @if(!empty($user->profile))
+                                        <a href="{{ url('user/profiles/' .$user->profile->id .'/edit') }}" class="btn btn-primary d-flex">プロフィールを編集する</a>
+                                    @else
+                                        <a href="{{ url('user/profiles/create') }}" class="btn btn-primary d-flex">プロフィールを作成する</a>
+                                    @endif
                                 </div>
                             @else
                                 @if ($is_following)
@@ -51,19 +55,23 @@
                             
                         </div>
                     </div>
-                    <div class="d-flex flex-column">
-                        <h5>自己紹介</h5>
-                        <p>{!! nl2br(e($user->profile->introduction)) !!}</p>
-                    </div>
-                    <div class="d-md-flex">
-                        <p class="flex-fill bd-highlight">メインジョブ：{{ $user->profile->jobName }}</p>
-                        <p class="flex-fill bd-highlight">ストーリー進行度：{{ $user->profile->storyName }}</p>
-                    </div>
-                    <div class="d-flex justify-content-first">
-                        <p class="mr-2 mb-0"><span class="font-weight-bold mr-1">{{ $gallery_count }}</span>ギャラリー</p>
-                        <p class="mr-2 mb-0"><span class="font-weight-bold mr-1">{{ $follow_count }}</span>フォロー</p>
-                        <p class="mr-2 mb-0"><span class="font-weight-bold mr-1">{{ $follower_count }}</span>フォロワー</p>
-                    </div>
+                    @if(!empty($user->profile))
+                        <div class="d-flex flex-column">
+                            <h5>自己紹介</h5>
+                            <p>{!! nl2br(e($user->profile->introduction)) !!}</p>
+                        </div>
+                        <div class="d-md-flex">
+                            <p class="flex-fill bd-highlight">メインジョブ：{{ $user->profile->jobName }}</p>
+                            <p class="flex-fill bd-highlight">ストーリー進行度：{{ $user->profile->storyName }}</p>
+                        </div>
+                        <div class="d-flex justify-content-first">
+                            <p class="mr-2 mb-0"><span class="font-weight-bold mr-1">{{ $gallery_count }}</span>ギャラリー</p>
+                            <p class="mr-2 mb-0"><span class="font-weight-bold mr-1">{{ $follow_count }}</span>フォロー</p>
+                            <p class="mr-2 mb-0"><span class="font-weight-bold mr-1">{{ $follower_count }}</span>フォロワー</p>
+                        </div>
+                    @else
+                        <h5>プロフィールはありません</h5>
+                    @endif
                 </div>
             </div>
         </div>
@@ -87,22 +95,17 @@
                                 <p class="mb-0 text-secondary">{{ count($timeline->comments) }}</p>
                             </div>
                             <div class="d-flex align-items-center">
-                                @if (!in_array($user->id, array_column($timeline->favorites->toArray(), 'user_id'), TRUE))
-                                    <form method="POST" action="{{ url('user/favorites/') }}" class="mb-0">
-                                        @csrf
-        
-                                        <input type="hidden" name="gallery_id" value="{{ $timeline->id }}">
-                                        <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
-                                    </form>
+                                @if (!$timeline->isFavorited(Auth::user()))
+                                    <span class="favorites">
+                                        <i class="far fa-heart fa-fw favorite-toggle text-primary" data-gallery-id="{{ $timeline->id }}"></i>
+                                        <span class="favorite-counter text-secondary">{{ $timeline->favorites_count }}</span>
+                                    </span><!-- /.likes -->
                                 @else
-                                    <form method="POST" action="{{ url('user/favorites/' .array_column($timeline->favorites->toArray(), 'id', 'user_id')[$user->id]) }}" class="mb-0">
-                                        @csrf
-                                        @method('DELETE')
-        
-                                        <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
-                                    </form>
+                                    <span class="favorites">
+                                        <i class="fas fa-heart fa-fw favorite-toggle text-primary" data-gallery-id="{{ $timeline->id }}"></i>
+                                        <span class="favorite-counter text-secondary">{{ $timeline->favorites_count }}</span>
+                                    </span><!-- /.likes -->
                                 @endif
-                                <p class="mb-0 text-secondary">{{ count($timeline->favorites) }}</p>
                             </div>
                         </div>
                     </div>

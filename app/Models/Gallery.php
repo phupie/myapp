@@ -32,6 +32,11 @@ class Gallery extends Model
         return $this->hasMany(Comment::class);
     }
     
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
+    
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'gallery_tag');
@@ -60,7 +65,7 @@ class Gallery extends Model
     //ユーザーギャラリー取得
     public function getUserTimeLine(Int $user_id)
     {
-        return $this->where('user_id',$user_id)->orderBy('created_at', 'DESC')->get();
+        return $this->withCount('favorites')->where('user_id',$user_id)->orderBy('created_at', 'DESC')->get();
     }
     //フォローユーザーギャラリー取得
     public function getTimeLines(Int $user_id, Array $follow_ids)

@@ -58,12 +58,12 @@
                     <div class="d-flex align-items-center">
                         @if (!$gallery->isFavorited(Auth::user()))
                             <span class="favorites">
-                                <i class="far fa-heart fa-fw favorite-toggle" data-gallery-id="{{ $gallery->id }}"></i>
+                                <i class="far fa-heart fa-fw favorite-toggle text-primary" data-gallery-id="{{ $gallery->id }}"></i>
                                 <span class="favorite-counter text-secondary">{{$gallery->favorites_count}}</span>
                             </span><!-- /.likes -->
                         @else
                         <span class="favorites">
-                            <i class="far fa-heart fa-fw favorite-toggle favorited" data-gallery-id="{{ $gallery->id }}"></i>
+                            <i class="fas fa-heart fa-fw favorite-toggle text-primary" data-gallery-id="{{ $gallery->id }}"></i>
                             <span class="favorite-counter text-secondary">{{$gallery->favorites_count}}</span>
                         </span><!-- /.likes -->
                         @endif
@@ -128,7 +128,8 @@
                                     <a href="{{ url('user/users/' .$comment->user->id) }}" class="text-secondary">＠{{ $comment->user->name }}</a>
                                 </div>
                                 <div class="d-flex justify-content-end flex-grow-1">
-                                    <p class="mb-0 text-secondary">{{ $comment->created_at->format('Y-m-d H:i') }}</p>
+                                    <p class="mb-0 text-secondary mr-1">{{ $comment->created_at->format('Y-m-d H:i') }}</p>
+                                    <a href="{{ url('user/comments/' .$comment->id) }}"><i class="fas fa-flag"></i></a>
                                 </div>
                             </div>
                             <div class="py-3 text-light">

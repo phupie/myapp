@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h1>プロフィールを作成しましょう</h1>
-            <div class="card">
+            <div class="card text-light">
                 <div class="card-header">プロフィール</div>
 
                 <div class="card-body">
@@ -87,7 +87,7 @@
                             </div>
                             <div class="form-group col-md-8">
                                 <div class="form-group">
-                                    <label for="display_name">アカウント名<small class="text-black-50 ml-1">表示名</small></label>
+                                    <label for="display_name">アカウント名<small class="text-secondary ml-1">表示名</small></label>
                                     <input id="display_name" type="text" class="form-control @error('display_name') is-invalid @enderror" name="display_name" required autocomplete="display_name" value="{{ old('display_name') }}">
         
                                     @error('display_name')
