@@ -10,6 +10,7 @@ use App\Models\Gallery;
 use App\Models\Comment;
 use App\Models\Follower;
 use App\Models\Tag;
+use App\Models\Report;
 use Storage;
 use App\Facades\Search;
 
@@ -94,7 +95,7 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Gallery $gallery, Comment $comment, Tag $tag)
+    public function show(Gallery $gallery, Comment $comment)
     {
         $user = auth()->user();
         $gallery = $gallery->getGallery($gallery->id);

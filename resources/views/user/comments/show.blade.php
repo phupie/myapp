@@ -36,6 +36,7 @@
                         
                         <div class="form-group">
                             <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                            <input type="hidden" name="gallery_id" value="{{ $comment->gallery_id }}">
                             <label for="report">内容</label>
                             <select id="report" type="text" class="form-control @error('report') is-invalid @enderror" name="name_category" required autocomplete="report">
                                 @foreach(config('report') as $index => $name)

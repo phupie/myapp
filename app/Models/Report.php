@@ -27,6 +27,16 @@ class Report extends Model
         return $this->with('user')->where('comment_id', $comment_id)->get();
     }
     
+    public function isReport(Int $user_id, Int $comment_id)
+    {
+        return $this->where('user_id', $user_id)->where('comment_id', $comment_id)->first();
+    }
+    
+    public function reportDestroy(Int $report_id)
+    {
+        return $this->where('id', $report_id)->delete();
+    }
+    
     //name変換
     public function getNameCategoryAttribute()
     {

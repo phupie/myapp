@@ -18,6 +18,16 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
     
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
+    
+    public function gallery()
+    {
+        return $this->belongsTo(Gallery::class);
+    }
+    
     public function commentStore(Int $user_id, Array $data)
     {
         $this->user_id = $user_id;

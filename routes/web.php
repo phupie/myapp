@@ -52,7 +52,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
         Route::post('favorites', 'FavoriteController@favorite')->name('favorite');
         
         //report
-        Route::resource('reports', 'ReportController',['only' => ['store']]);
+        Route::resource('reports', 'ReportController',['only' => ['store', 'destroy']]);
         
     });
 });

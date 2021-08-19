@@ -40,6 +40,7 @@ class ReportController extends Controller
     {
         $user = auth()->user();
         $data = $request->all();
+        $gallery_id = $request->gallery_id;
         $validator = Validator::make($data,[
             'name_category' => ['required', 'integer'],
         ]);
@@ -47,7 +48,7 @@ class ReportController extends Controller
         $validator->validate();
         $report->reportStore($user->id, $data);
         
-        return redirect('user/galleries');
+        return redirect()->route('user.galleries.show', $gallery_id)->with('flash_message', 'コメントを報告しました。取り消す場合は赤フラッグから取り消してください。');
     }
 
     /**
@@ -90,8 +91,18 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Report $report)
     {
-        //
+        $user_id = $report->user_id;
+        $comment_id = $report->comment_id;
+        $report_id = $report->id;
+        $is_Report = $report->isReport($user_id, $comment_id);
+        
+        if(isset($is_Report)) {
+            $report->reportDestroy($report_id);
+            return back();
+        }
+        
+        return back();
     }
 }

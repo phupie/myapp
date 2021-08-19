@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Report;
 
 class CommentController extends Controller
 {
@@ -56,15 +57,20 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show(Comment $comment, Report $report)
     {
         $user = auth()->user();
         $comment = $comment->getComment($comment->id);
+        $report = $report->isReport($user->id, $comment->id);
         
-        return view('user.comments.show', [
-            'user' => $user,
-            'comment' => $comment
+        if (!isset($report)) {
+            return view('user.comments.show', [
+                'user' => $user,
+                'comment' => $comment
         ]);
+        } else {
+            return back();
+        }
     }
 
     /**

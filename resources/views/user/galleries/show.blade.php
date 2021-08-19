@@ -74,6 +74,11 @@
     </div>
     <div class="row justify-content-center">
             <div class="col-md-8 mb-3">
+                @if (session('flash_message'))
+                    <div class="flash_message text-danger">
+                        {{ session('flash_message') }}
+                    </div>
+                @endif
                 <ul class="list-group">
                     <li class="list-group-item pt-0">
                         <div class="pb-3">
@@ -129,7 +134,24 @@
                                 </div>
                                 <div class="d-flex justify-content-end flex-grow-1">
                                     <p class="mb-0 text-secondary mr-1">{{ $comment->created_at->format('Y-m-d H:i') }}</p>
-                                    <a href="{{ url('user/comments/' .$comment->id) }}"><i class="fas fa-flag"></i></a>
+                                    <div>
+                                        @if(!in_array(Auth::user()->id, array_column($comment->reports->toArray(), 'user_id'), TRUE))
+                                            <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-flag"></i></a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a href="{{ url('user/comments/' .$comment->id) }}" class="dropdown-item">報告する</a>
+                                            </div>
+                                        @else
+                                            <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-flag text-danger"></i></a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <form method="POST" action="{{ url('user/reports/' .array_column($comment->reports->toArray(), 'id', 'user_id')[Auth::user()->id]) }}" class="mb-0" id="delele">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    
+                                                    <button type="submit" class="dropdown-item del-btn">報告を取り消す</button>
+                                                </form>
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                             <div class="py-3 text-light">
