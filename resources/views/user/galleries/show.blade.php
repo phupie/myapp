@@ -29,7 +29,14 @@
                     </h4>
                     <div>
                     	@foreach($gallery->tags as $tag)
-                		    <span class="badge badge-pill badge-info">{{$tag->name}}</span>
+                        	<span class="badge badge-pill badge-info py-0">
+                        	    <form class="d-flex" action="{{ url('user/galleries/search') }}" method="post">
+                                    @csrf
+                                    @method('GET')
+                                    <input type="hidden" class="form-control me-2" type="search" aria-label="Search" name="keyword" value="{{ $tag->name }}">
+                                    <button type="submit" class="btn btn-link text-body p-0"><small>{{ $tag->name }}</small></button>
+                                </form>
+                        	</span>
                         @endforeach
                     </div>
                     <p class="text-light">{!! nl2br(e($gallery->explanation)) !!}</p>
@@ -58,12 +65,12 @@
                     <div class="d-flex align-items-center">
                         @if (!$gallery->isFavorited(Auth::user()))
                             <span class="favorites">
-                                <i class="far fa-heart fa-fw favorite-toggle text-primary" data-gallery-id="{{ $gallery->id }}"></i>
+                                <i class="far fa-heart fa-fw favorite-toggle text-primary LikesIcon-fa-heart" data-gallery-id="{{ $gallery->id }}"></i>
                                 <span class="favorite-counter text-secondary">{{$gallery->favorites_count}}</span>
                             </span><!-- /.likes -->
                         @else
                         <span class="favorites">
-                            <i class="fas fa-heart fa-fw favorite-toggle text-primary" data-gallery-id="{{ $gallery->id }}"></i>
+                            <i class="fas fa-heart fa-fw favorite-toggle text-primary LikesIcon-fa-heart heart" data-gallery-id="{{ $gallery->id }}"></i>
                             <span class="favorite-counter text-secondary">{{$gallery->favorites_count}}</span>
                         </span><!-- /.likes -->
                         @endif
@@ -93,7 +100,7 @@
                                             <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="50" height="50">
                                         @endif
                                         <div class="ml-2 d-flex flex-column">
-                                            <a href="{{ url('user/users/' .$user->id) }}" class="mb-0 text-light">{{ $user->profile->display_name }}</a>
+                                            <a href="{{ url('user/users/' .$user->id) }}" class="mb-0 text-light">@if(!empty($user->profile)){{ $user->profile->display_name }}@else匿名@endif</a>
                                             <a href="{{ url('user/users/' .$user->id) }}" class="text-secondary">＠{{ $user->name }}</a>
                                         </div>
                                     </div>

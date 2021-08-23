@@ -121,8 +121,7 @@ $(function () {
     }) //通信成功した時の処理
     .done(function (data) {
       $this.toggleClass('far');
-      $this.toggleClass('fas'); //likedクラスのON/OFF切り替え。
-
+      $this.toggleClass('fas heart');
       $this.next('.favorite-counter').html(data.gallery_favorites_count);
     }) //通信失敗した時の処理
     .fail(function () {

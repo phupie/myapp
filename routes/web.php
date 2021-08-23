@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('welcome');
 });
 
 Route::namespace('User')->prefix('user')->name('user.')->group(function(){
@@ -42,6 +42,9 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
         //profile
         Route::resource('profiles', 'ProfileController', ['only' => ['create', 'store', 'edit', 'update',/*'destroy'*/]]);
         
+        //tag
+        Route::get('tags', 'TagController@index');
+        
         //gallery
         Route::get('galleries/search', 'GalleryController@search');
         Route::resource('galleries', 'GalleryController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
@@ -53,6 +56,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
         
         //report
         Route::resource('reports', 'ReportController',['only' => ['store', 'destroy']]);
+        
         
     });
 });

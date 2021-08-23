@@ -26,13 +26,18 @@
     <link href="{{ secure_asset('css/style.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: system-ui;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('user/galleries') }}">
-                    <img src="/storage/sample/1_Primary_logo_on_transparent_414x63.png" height="40">
+            <div class="container-fluid">
+                <a class="navbar-brand mr-0" href="{{ url('/') }}">
+                    <img src="/storage/sample/12_Primary_logo_on_transparent_414x63.png" height="40">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -40,23 +45,31 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <form class="d-flex" action="{{ url('user/galleries/search') }}" method="post">
-                            @csrf
-                            @method('GET')
-                            <input type="text" class="form-control me-2" type="search" placeholder="フリーワード検索" aria-label="Search" name="keyword">
-                            <button class="btn btn-outline-light" type="submit"><i class="px-2 fas fa-search"></i></button>
-                        </form>
+                    <ul class="navbar-nav mr-auto align-items-center">
+                        <li class="nav-item mr-2">
+                            <form class="d-flex" action="{{ url('user/galleries/search') }}" method="post">
+                                @csrf
+                                @method('GET')
+                                <input type="text" class="form-control me-2" type="search" placeholder="フリーワード検索" aria-label="Search" name="keyword">
+                                <button class="btn btn-outline-light" type="submit"><i class="px-2 fas fa-search"></i></button>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('user/tags') }}">タグ一覧</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto align-items-center">
                         <!-- Authentication Links -->
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('user/users') }}">ユーザー一覧</a>
+                                <a class="nav-link" href="{{ url('user/galleries/create') }}">投稿する</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('user/galleries/create') }}">投稿する</a>
+                                <a class="nav-link" href="{{ url('user/galleries') }}">マイギャラリー</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('user/users') }}">ユーザー一覧</a>
                             </li>
                         @unless (Auth::guard('user')->check())
                             <li class="nav-item">

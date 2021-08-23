@@ -13,6 +13,9 @@ class Search
           if(!empty($keyword)) {
           $galleries = $query->where('title','like', '%' .$keyword. '%')
                              ->orWhere('explanation','like', '%' .$keyword. '%')
+                             ->orWhereHas('tags', function ($tag) use ($keyword){
+                                $tag->where('name', 'like', '%' . $keyword . '%');
+                             })
                              ->get();
           $message = "「". $keyword."」を含む投稿の検索が完了しました。";
         }

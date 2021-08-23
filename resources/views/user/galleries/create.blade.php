@@ -16,7 +16,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card text-light">
                 <div class="card-header">投稿する</div>
 
                 <div class="card-body">
@@ -67,19 +67,14 @@
                         
                         <div class="form-group">
                             <label for="tags">タグ</label>
-                            <input id="tags" type="tags" class="form-control @error('tags') is-invalid @enderror" name="tags" required autocomplete="tags" value="{{ old('tags') }}">
-                            @error('tags')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            <div class="col-md-12">
-                            </div>
+                            <input id="tags" type="tags" class="form-control" name="tags" value="{{ old('tags') }}" placeholder="例)#自然">
+                            <small>※　「＃きれい」のように入力して下さい</small><br>
+                            <small>※　複数入れる場合は＃で区切って入力して下さい</small>
                         </div>
                         
                         <div class="form-group">
                             <label for="explanation">説明文</label>
-                            <input id="explanation" type="text" class="form-control @error('explanation') is-invalid @enderror" name="explanation" required autocomplete="explanation" value="{{ old('explanation') }}" placeholder="例：〇〇エリアのこの場所で撮りました！"　rows="4">
+                            <input id="explanation" type="text" class="form-control @error('explanation') is-invalid @enderror" name="explanation" required autocomplete="explanation" value="{{ old('explanation') }}" placeholder="例)〇〇エリアのこの場所で撮りました！"　rows="4">
                             @error('explanation')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

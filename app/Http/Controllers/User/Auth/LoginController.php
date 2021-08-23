@@ -73,10 +73,9 @@ class LoginController extends Controller
         ]);
     }
     
-    //ログイン後のリダイレクト先
     public function redirectPath()
     {
-        return 'user/profiles/create';
+        return '/';
     }
     
     public function redirectToGoogle()

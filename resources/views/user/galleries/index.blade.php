@@ -29,12 +29,12 @@
                                       <!-- Review.phpに作ったisLikedByメソッドをここで使用 -->
                                       @if (!$timeline->isFavorited(Auth::user()))
                                         <span class="favorites">
-                                            <i class="far fa-heart fa-fw favorite-toggle text-primary" data-gallery-id="{{ $timeline->id }}"></i>
+                                            <i class="far fa-heart fa-fw favorite-toggle text-primary LikesIcon-fa-heart" data-gallery-id="{{ $timeline->id }}"></i>
                                           <span class="favorite-counter text-secondary">{{$timeline->favorites_count}}</span>
                                         </span><!-- /.likes -->
                                       @else
                                         <span class="favorites">
-                                            <i class="fas fa-heart fa-fw favorite-toggle text-primary" data-gallery-id="{{ $timeline->id }}"></i>
+                                            <i class="fas fa-heart fa-fw favorite-toggle text-primary LikesIcon-fa-heart heart" data-gallery-id="{{ $timeline->id }}"></i>
                                           <span class="favorite-counter text-secondary">{{$timeline->favorites_count}}</span>
                                         </span><!-- /.likes -->
                                       @endif
