@@ -33,20 +33,15 @@
                                     @endif
                                 </div>
                             @else
-                                @if ($is_following)
-                                    <form action="{{ route('user.unfollow', $user->id) }}" method="POST" class="d-flex flex-md-column bd-highlight mb-2">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-        
-                                            <button type="submit" class="btn btn-danger">フォロー解除</button>
-                                    </form>
-                                @else
-                                    <form action="{{ route('user.follow', $user->id) }}" method="POST" class="d-flex flex-md-column bd-highlight mb-2">
-                                        {{ csrf_field() }}
-        
-                                            <button type="submit" class="btn btn-primary">フォローする</button>
-                                    </form>
-                                @endif
+                                @if(Auth::check() && Auth::id() != $user->id)
+                            		<follow-button 
+                                		login_user_id="{{json_encode(Auth::id())}}" 
+                                		user_id="{{json_encode($user->id)}}" 
+                                		csrf="{{json_encode(csrf_token())}}" 
+                                		following="{{json_encode(Auth::user()->isFollowing($user->id))}}" 
+                                		followed="{{json_encode(Auth::user()->isFollowed($user->id))}}">
+                            		</follow-button>
+                        		@endif
         
                                 @if ($is_followed)
                                     <span class="mt-2 px-1 bg-secondary text-light">フォローされています</span>

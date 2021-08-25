@@ -114,23 +114,18 @@ class UserController extends Controller
     public function follow(User $user)
     {
         $follower = auth()->user();
-        //認証ユーザーが、$userをフォローしてるか
-        $is_following = $follower->isFollowing($user->id);
-        if(!$is_following) {
+        
+        if($follower->id != $user->id) {
             $follower->follow($user->id);
-            return back();
+            return response()->json($follower->isFollowing($user->id));
         }
     }
     
-    //フォロー解除
-    public function unfollow(User $user)
+    //フォロー確認
+    public function follow_check(User $user)
     {
-        $follower = auth()->user();
-        //認証ユーザーが、$userをフォローしてるか
-        $is_following = $follower->isFollowing($user->id);
-        if($is_following) {
-            $follower->unfollow($user->id);
-            return back();
-        }
+        $check_user = auth()->user();
+        
+        return response()->json($check_user->isFollowing($user->id));
     }
 }

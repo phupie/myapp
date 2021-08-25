@@ -32,12 +32,12 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
         //TOP page
         Route::resource('home', 'HomeController', ['only' => 'index']);
         
-        //user
-        Route::resource('users', 'UserController', ['only' => ['index', 'show']]);
-        
         //follow/unfollow
         Route::post('users/{user}/follow', 'UserController@follow')->name('follow');
-        Route::delete('users/{user}/unfollow', 'UserController@unfollow')->name('unfollow');
+        Route::get('users/{user}/follow_check', 'UserController@follow_check')->name('follow_check');
+        
+        //user
+        Route::resource('users', 'UserController', ['only' => ['index', 'show']]);
         
         //profile
         Route::resource('profiles', 'ProfileController', ['only' => ['create', 'store', 'edit', 'update',/*'destroy'*/]]);

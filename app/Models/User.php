@@ -54,7 +54,7 @@ class User extends Authenticatable
     //フォロー
     public function follow(Int $user_id)
     {
-        return $this->follows()->attach($user_id);
+        return $this->follows()->toggle($user_id);
     }
     //フォロー解除
     public function unfollow(Int $user_id)
@@ -64,12 +64,12 @@ class User extends Authenticatable
     //フォローしてるか
     public function isFollowing(Int $user_id)
     {
-        return (boolean) $this->follows()->where('followed_id', $user_id)->first(['id']);
+        return $this->follows()->where('followed_id', $user_id)->exists();
     }
     //フォローされているか
     public function isFollowed(Int $user_id)
     {
-        return (boolean) $this->followers()->where('following_id', $user_id)->first(['id']);
+        return $this->followers()->where('following_id', $user_id)->exists();
     }
     //ユーザー全件取得
     public function getAllUsers(Int $user_id)
