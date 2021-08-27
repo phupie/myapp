@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Gallery;
+use App\Models\Profile;
 
 class HomeController extends Controller
 {
@@ -17,9 +19,30 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Profile $profile, Gallery $gallery)
     {
-        return view('user.home');
+        $user = auth()->user();
+        $story_num = Profile::where('user_id', $user->id)->pluck('story_progress')->first();
+        $timelines = $gallery->getProfileTimeLine($story_num);
+        
+        if(isset($user->profile)) {
+            
+            return view('user.home.index',[
+                'timelines' => $timelines
+            ]);
+        } else {
+            return redirect('user/home/allIndex');
+        }
+    }
+    
+    public function all(Gallery $gallery)
+    {
+        $user = auth()->user();
+        $posts = $gallery->all();
+        
+        return view('user.home.allIndex',[
+            'posts' => $posts
+        ]);
     }
 
     /**

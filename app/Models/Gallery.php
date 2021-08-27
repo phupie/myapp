@@ -67,6 +67,11 @@ class Gallery extends Model
     {
         return $this->withCount('favorites')->where('user_id',$user_id)->orderBy('created_at', 'DESC')->get();
     }
+    //ストーリーに応じたギャラリー取得
+    public function getProfileTimeLine(Int $story_num)
+    {
+        return $this->withCount('favorites')->where('area', '<=', $story_num)->orderBy('created_at', 'DESC')->get();
+    }
     //フォローユーザーギャラリー取得
     public function getTimeLines(Int $user_id, Array $follow_ids)
     {

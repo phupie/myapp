@@ -30,6 +30,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
     Route::middleware('auth:user')->group(function(){
         
         //TOP page
+        Route::get('home/all', 'HomeController@all');
         Route::resource('home', 'HomeController', ['only' => 'index']);
         
         //follow/unfollow
