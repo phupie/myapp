@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Favorite;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Storage;
+use Image;
 
 class Gallery extends Model
 {
@@ -50,8 +52,18 @@ class Gallery extends Model
         $this->explanation = $data['explanation'];
         $this->area = $data['areaName'];
         
-        $path = $data['img']->store('public/image/');
-        $this->img_path = basename($path);
+        // 画像の拡張子を取得
+        $extension = $data['img']->getClientOriginalExtension();
+        // 画像の名前を取得
+        $filename = $data['img']->getClientOriginalName();
+        // 画像をリサイズ
+        $resize_img = Image::make($data['img'])
+        ->resize(1080, null, function ($constraint) {
+            $constraint->aspectRatio();
+        })
+        ->encode($extension);
+        $path = Storage::disk('s3')->put('/uploads/'.$filename,(string)$resize_img,'public');
+        $this->img_path = Storage::disk('s3')->url('uploads/' .$filename);
         $this->save();
         
         

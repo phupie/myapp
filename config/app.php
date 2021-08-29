@@ -161,6 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -231,6 +232,8 @@ return [
         //google login
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Search' => App\Facades\Search::class,
+        
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

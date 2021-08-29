@@ -5,7 +5,7 @@
 @section('content')
 <!-- Masthead-->
         <header class="masthead">
-                <img src="{{ asset('storage/sample/GGpc6fd6hvRaFTsQM5hq1629528068-1629528327.gif') }}" class="w-100" style="margin-top: -24px;"></img>
+                <img src="{{ asset('storage/sample/GGpc6fd6hvRaFTsQM5hq1629528068-1629528327 (1).gif') }}" class="w-100" style="margin-top: -24px;"></img>
         </header>
         <!-- Icons Grid-->
         <div class="">

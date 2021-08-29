@@ -64,7 +64,7 @@ class GalleryController extends Controller
         $validator = Validator::make($data,[
             'title' => ['required', 'string'],
             'explanation' => ['required', 'string'],
-            'img' => ['required','file', 'image', 'mimes:jpeg,png,jpg'],
+            'img' => 'file|required',
             'areaName' => ['required', 'integer']
         ]);
         

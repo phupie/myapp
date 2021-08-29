@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12 mb-3">
             <div class="card">
-                <img class="card-image-top" src="{{ asset('storage/image/' .$gallery->img_path) }}">
+                <img class="card-image-top" src="{{ $gallery->img_path }}">
                 <div class="card-body">
                     <div class="d-flex mb-3">
                         @if(isset($gallery->user->profile->img_path))

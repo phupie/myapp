@@ -25,7 +25,7 @@
                         @csrf
 
                         <div class="form-group mb-0">
-                            <label for="img">あなたの一枚</label>
+                            <label for="img">あなたの一枚<small class="text-danger">8MBまで！</small></label>
                             <input class="form-control-file @error('img') is-invalid @enderror" type="file" name="img" onchange="previewImage(this);" autocomplete="img">
                             @error('img')
                                 <span class="invalid-feedback" role="alert">
