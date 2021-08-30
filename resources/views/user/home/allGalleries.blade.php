@@ -9,10 +9,10 @@
                 <div class="col mb-1 p-1">
                     <div class="card">
                         <!-- Product image-->
-                        <a href="{{ url('user/galleries/' .$post->id) }}"><img class="card-img-top" src="{{ asset('storage/image/' .$post->img_path) }}"/></a>
+                        <a href="{{ url('user/galleries/' .$post->id) }}"><img class="card-img-top" src="{{ $post->img_path }}"/></a>
                         <!-- Product details-->
                         <div class="card-footer d-flex bd-highlight w-100 py-1">
-                            <img src="{{ asset('storage/profile_image/' .$post->user->profile->img_path) }}" class="rounded-circle mr-1" width="30" height="30">
+                            <img src="{{ $post->user->profile->img_path }}" class="rounded-circle mr-1" width="30" height="30">
                             <div class="mr-3 d-flex align-items-center mr-auto">
                                 <a href="{{ url('user/users/' .$post->user->id) }}" class="text-light mr-1">{{ $post->user->profile->display_name }}</a>
                                 <p class="mb-0 text-secondary">＠{{ $post->user->name }}</p>

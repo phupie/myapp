@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card text-light">
                 @if(isset($user->profile->head_img_path))
-                    <img class="card-image-top" src="{{ asset( 'storage/profile_image/' .$user->profile->head_img_path) }}">
+                    <img class="card-image-top" src="{{ $user->profile->head_img_path }}">
                 @else
                     <img class="card-image-top" src="{{ asset( 'storage/image/795112796565.png') }}">
                 @endif
@@ -14,7 +14,7 @@
                     <div class="d-md-flex flex-row bd-highlight mb-3">
                         <div class="d-flex mb-3">
                             @if(isset($user->profile->img_path))
-                                <img class="rounded-circle mr-3" src="{{ asset( 'storage/profile_image/' .$user->profile->img_path) }}" width="150" height="150">
+                                <img class="rounded-circle mr-3" src="{{ $user->profile->img_path }}" width="150" height="150">
                             @else
                                 <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="150" height="150">
                             @endif
@@ -79,7 +79,7 @@
                 <div class="col mb-1 p-1">
                     <div class="card">
                         <!-- Product image-->
-                        <a href="{{ url('user/galleries/' .$timeline->id) }}"><img class="card-img-top" src="{{ asset('storage/image/' .$timeline->img_path) }}"/></a>
+                        <a href="{{ url('user/galleries/' .$timeline->id) }}"><img class="card-img-top" src="{{ $timeline->img_path }}"/></a>
                         <!-- Product details-->
                         <div class="card-footer d-flex bd-highlight w-100 py-1">
                             <div class="mb-0 text-secondary bd-highlight mr-auto small py-1">

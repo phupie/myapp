@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Storage;
+use Image;
 
 class Profile extends Model
 {
@@ -21,16 +23,16 @@ class Profile extends Model
         //profile image
         $cropImageData = base64_decode(explode(",", explode(";", $data['img'])[1])[1]);
 
-        $imagePath = '/profile_image/' . str_random(10) . '.jpeg';
+        $imagePath = str_random(40) . '.jpeg';
 
-        $storageImagePath = storage_path('app/public') . $imagePath;
+        $storageImagePath = Storage::disk('s3')->put('/uploads/'.$imagePath, $cropImageData, 'public');
         \file_put_contents($storageImagePath, $cropImageData);
         //header image
         $head_cropImageData = base64_decode(explode(",", explode(";", $data['head_img'])[1])[1]);
 
-        $head_imagePath = '/profile_image/' . str_random(10) . '.jpeg';
+        $head_imagePath = str_random(40) . '.jpeg';
 
-        $head_storageImagePath = storage_path('app/public') . $head_imagePath;
+        $head_storageImagePath = Storage::disk('s3')->put('/uploads/'.$head_imagePath, $head_cropImageData, 'public');
         \file_put_contents($head_storageImagePath, $head_cropImageData);
         
         $this->user_id = $user_id;
@@ -38,8 +40,8 @@ class Profile extends Model
         $this->main_job = $data['jobName'];
         $this->story_progress = $data['storyName'];
         $this->introduction = $data['introduction'];
-        $this->img_path = basename($storageImagePath);
-        $this->head_img_path = basename($head_storageImagePath);
+        $this->img_path = Storage::disk('s3')->url('uploads/' .$imagePath);
+        $this->head_img_path = Storage::disk('s3')->url('uploads/' .$head_imagePath);
         $this->save();
         
         return;
@@ -57,21 +59,23 @@ class Profile extends Model
     //編集
     public function profileUpdate(Array $data)
     {
+        //ヘッダー画像とプロフィール画像両方の場合
         if (isset($data['img']) && isset($data['head_img'])) {
         //profile image
         $cropImageData = base64_decode(explode(",", explode(";", $data['img'])[1])[1]);
 
-        $imagePath = '/profile_image/' . str_random(10) . '.jpeg';
+        $imagePath = str_random(40) . '.jpeg';
 
-        $storageImagePath = storage_path('app/public') . $imagePath;
+        $storageImagePath = Storage::disk('s3')->put('/uploads/'.$imagePath, $cropImageData, 'public');
         \file_put_contents($storageImagePath, $cropImageData);
         //header image
         $head_cropImageData = base64_decode(explode(",", explode(";", $data['head_img'])[1])[1]);
 
-        $head_imagePath = '/profile_image/' . str_random(10) . '.jpeg';
+        $head_imagePath = str_random(40) . '.jpeg';
 
-        $head_storageImagePath = storage_path('app/public') . $head_imagePath;
+        $head_storageImagePath = Storage::disk('s3')->put('/uploads/'.$head_imagePath, $head_cropImageData, 'public');
         \file_put_contents($head_storageImagePath, $head_cropImageData);
+        
         
         $this::where('id', $this->id)
             ->update([
@@ -79,16 +83,17 @@ class Profile extends Model
                 'main_job'       => $data['jobName'],
                 'story_progress' => $data['storyName'],
                 'introduction'   => $data['introduction'],
-                'img_path'       => basename($storageImagePath),
-                'head_img_path'  => basename($head_storageImagePath)
+                'img_path'       => Storage::disk('s3')->url('uploads/' .$imagePath),
+                'head_img_path'  => Storage::disk('s3')->url('uploads/' .$head_imagePath)
             ]);
+        //プロフィール画像だけの場合
         } elseif (isset($data['img'])) {
             //profile image
             $cropImageData = base64_decode(explode(",", explode(";", $data['img'])[1])[1]);
     
-            $imagePath = '/profile_image/' . str_random(10) . '.jpeg';
+            $imagePath = str_random(40) . '.jpeg';
     
-            $storageImagePath = storage_path('app/public') . $imagePath;
+            $storageImagePath = Storage::disk('s3')->put('/uploads/'.$imagePath, $cropImageData, 'public');
             \file_put_contents($storageImagePath, $cropImageData);
             
             $this::where('id', $this->id)
@@ -97,15 +102,16 @@ class Profile extends Model
                 'main_job'       => $data['jobName'],
                 'story_progress' => $data['storyName'],
                 'introduction'   => $data['introduction'],
-                'img_path'       => basename($storageImagePath)
+                'img_path'       => Storage::disk('s3')->url('uploads/' .$imagePath)
             ]);
+        //ヘッダー画像だけの場合
         } elseif (isset($data['head_img'])) {
             //header image
             $head_cropImageData = base64_decode(explode(",", explode(";", $data['head_img'])[1])[1]);
     
-            $head_imagePath = '/profile_image/' . str_random(10) . '.jpeg';
+            $head_imagePath = str_random(40) . '.jpeg';
     
-            $head_storageImagePath = storage_path('app/public') . $head_imagePath;
+            $head_storageImagePath = Storage::disk('s3')->put('/uploads/'.$head_imagePath, $head_cropImageData, 'public');
             \file_put_contents($head_storageImagePath, $head_cropImageData);
             
             $this::where('id', $this->id)
@@ -114,8 +120,9 @@ class Profile extends Model
                     'main_job'       => $data['jobName'],
                     'story_progress' => $data['storyName'],
                     'introduction'   => $data['introduction'],
-                    'head_img_path'  => basename($head_storageImagePath)
+                    'head_img_path'  => Storage::disk('s3')->url('uploads/' .$head_imagePath)
                 ]);
+        //画像変更なし
         } else {
              $this::where('id', $this->id)
                 ->update([

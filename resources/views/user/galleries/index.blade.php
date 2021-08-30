@@ -12,7 +12,7 @@
                         <a href="{{ url('user/galleries/' .$timeline->id) }}"><img class="card-img-top" src="{{$timeline->img_path}}"/></a>
                         <!-- Product details-->
                         <div class="card-footer d-flex bd-highlight w-100 py-1">
-                            <img src="{{ asset('storage/profile_image/' .$timeline->user->profile->img_path) }}" class="rounded-circle mr-1" width="30" height="30">
+                            <img src="{{ $timeline->user->profile->img_path }}" class="rounded-circle mr-1" width="30" height="30">
                             <div class="mr-3 d-flex align-items-center mr-auto">
                                 <a href="{{ url('user/users/' .$timeline->user->id) }}" class="text-light mr-1">{{ $timeline->user->profile->display_name }}</a>
                                 <p class="mb-0 text-secondary">＠{{ $timeline->user->name }}</p>

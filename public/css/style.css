@@ -18,6 +18,10 @@ body .list-group-item {
   border-color: #000000;
 }
 
+body .features-icons {
+  background-color: #BDBDBD;
+}
+
 h1 {
   font-family: "Sacramento", cursive;
 }
@@ -42,7 +46,7 @@ nav {
   color: #212121;
 }
 
-.secondary-text-color {
+section .features-icons {
   color: #757575;
 }
 

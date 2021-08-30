@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h1>プロフィールを編集する</h1>
-            <div class="card">
+            <div class="card text-light">
                 <div class="card-header">プロフィール</div>
 
                 <div class="card-body">
@@ -23,7 +23,7 @@
                                 <label class="btn p-0 hover">
                                     <input type="file" id="image-head" name="image" accept="image/*" class="image-head" style="display:none;">
                                     <div id="image-style"　class="hover-img">
-                                        <img src="{{ asset('storage/profile_image/' .$profiles->head_img_path) }}" id="image-output-head" class="w-100">
+                                        <img src="{{ $profiles->head_img_path }}" id="image-output-head" class="w-100">
                                     </div>
                                     <div class="hover-text  d-flex align-items-center justify-content-center">
                                         <p class="text1 p-0"><i class="fas fa-camera fa-2x"></i></p>
@@ -57,7 +57,7 @@
                                     <label class="btn p-0 m-0 hover">
                                         <input type="file" id="image" name="image" accept="image/*" class="image" style="display:none;">
                                         <div id="image-style" width="200px" height="200px">
-                                            <img src="{{ asset('storage/profile_image/' .$profiles->img_path) }}" id="image-output" class="rounded-circle w-100 fas fa-camera fa-2x" height="200px">
+                                            <img src="{{ $profiles->img_path }}" id="image-output" class="rounded-circle w-100 fas fa-camera fa-2x" height="200px">
                                         </div>
                                         <div class="hover-text rounded-circle d-flex align-items-center justify-content-center">
                                             <p class="text1 m-0"><i class="fas fa-camera fa-2x"></i></p>
@@ -88,7 +88,7 @@
                             </div>
                             <div class="form-group col-md-8">
                                 <div class="form-group">
-                                    <label for="display_name">アカウント名<small class="text-black-50 ml-1">表示名</small></label>
+                                    <label for="display_name">アカウント名<small class="text-secondary ml-1">表示名</small></label>
                                     <input id="display_name" type="text" class="form-control @error('display_name') is-invalid @enderror" name="display_name" required autocomplete="display_name" value="{{ $profiles->display_name }}">
         
                                     @error('display_name')

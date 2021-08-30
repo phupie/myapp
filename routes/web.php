@@ -31,6 +31,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
         
         //TOP page
         Route::get('home/all', 'HomeController@all');
+        Route::get('home/galleries', 'HomeController@galleries');
         Route::resource('home', 'HomeController', ['only' => 'index']);
         
         //follow/unfollow

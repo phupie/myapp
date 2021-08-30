@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <div class="d-flex mb-3">
                         @if(isset($gallery->user->profile->img_path))
-                            <img class="rounded-circle mr-3" src="{{ asset( 'storage/profile_image/' .$gallery->user->profile->img_path) }}" width="50" height="50">
+                            <img class="rounded-circle mr-3" src="{{ $gallery->user->profile->img_path }}" width="50" height="50">
                         @else
                             <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="50" height="50">
                         @endif
@@ -95,7 +95,7 @@
                                 <div class="form-group row mb-0">
                                     <div class="col-md-12 p-3 w-100 d-flex">
                                         @if(isset($user->profile->img_path))
-                                            <img class="rounded-circle mr-3" src="{{ asset( 'storage/profile_image/' .$user->profile->img_path) }}" width="50" height="50">
+                                            <img class="rounded-circle mr-3" src="{{ $user->profile->img_path }}" width="50" height="50">
                                         @else
                                             <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="50" height="50">
                                         @endif
@@ -131,7 +131,7 @@
                         <li class="list-group-item">
                             <div class="py-3 w-100 d-flex">
                                 @if(isset($comment->user->profile->img_path))
-                                    <img class="rounded-circle mr-3" src="{{ asset( 'storage/profile_image/' .$comment->user->profile->img_path) }}" width="50" height="50">
+                                    <img class="rounded-circle mr-3" src="{{ $comment->user->profile->img_path }}" width="50" height="50">
                                 @else
                                     <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="50" height="50">
                                 @endif
@@ -141,24 +141,26 @@
                                 </div>
                                 <div class="d-flex justify-content-end flex-grow-1">
                                     <p class="mb-0 text-secondary mr-1">{{ $comment->created_at->format('Y-m-d H:i') }}</p>
-                                    <div>
-                                        @if(!in_array(Auth::user()->id, array_column($comment->reports->toArray(), 'user_id'), TRUE))
-                                            <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-flag"></i></a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <a href="{{ url('user/comments/' .$comment->id) }}" class="dropdown-item">報告する</a>
-                                            </div>
-                                        @else
-                                            <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-flag text-danger"></i></a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <form method="POST" action="{{ url('user/reports/' .array_column($comment->reports->toArray(), 'id', 'user_id')[Auth::user()->id]) }}" class="mb-0" id="delele">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    
-                                                    <button type="submit" class="dropdown-item del-btn">報告を取り消す</button>
-                                                </form>
-                                            </div>
-                                        @endif
-                                    </div>
+                                    @if(Auth::user() != $comment->user)
+                                        <div>
+                                            @if(!in_array(Auth::user()->id, array_column($comment->reports->toArray(), 'user_id'), TRUE))
+                                                <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-flag"></i></a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <a href="{{ url('user/comments/' .$comment->id) }}" class="dropdown-item">報告する</a>
+                                                </div>
+                                            @else
+                                                <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-flag text-danger"></i></a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <form method="POST" action="{{ url('user/reports/' .array_column($comment->reports->toArray(), 'id', 'user_id')[Auth::user()->id]) }}" class="mb-0" id="delele">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        
+                                                        <button type="submit" class="dropdown-item del-btn">報告を取り消す</button>
+                                                    </form>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="py-3 text-light">

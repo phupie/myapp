@@ -13,6 +13,9 @@ body {
 	    background: #112d4e;
 	    border-color: #000000;
 	}
+	.features-icons { 
+		background-color: #BDBDBD; 
+	}
 }
 
 h1 {
@@ -38,8 +41,10 @@ nav {
 	color: #212121; 
 }
 
-.secondary-text-color { 
-	color: #757575; 
+section {
+	.features-icons { 
+		color: #757575; 
+	}
 }
 
 .divider-color { 

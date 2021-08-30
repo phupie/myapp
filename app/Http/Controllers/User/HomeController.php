@@ -19,19 +19,25 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Profile $profile, Gallery $gallery)
+     
+    public function index()
+    {
+        return view('user.home');
+    }
+    
+    public function galleries(Profile $profile, Gallery $gallery)
     {
         $user = auth()->user();
-        $story_num = Profile::where('user_id', $user->id)->pluck('story_progress')->first();
-        $timelines = $gallery->getProfileTimeLine($story_num);
         
         if(isset($user->profile)) {
+            $story_num = Profile::where('user_id', $user->id)->pluck('story_progress')->first();
+            $timelines = $gallery->getProfileTimeLine($story_num);
             
-            return view('user.home.index',[
+            return view('user.home.galleries',[
                 'timelines' => $timelines
             ]);
         } else {
-            return redirect('user/home/allIndex');
+            return redirect('user/home/all');
         }
     }
     
@@ -40,7 +46,7 @@ class HomeController extends Controller
         $user = auth()->user();
         $posts = $gallery->all();
         
-        return view('user.home.allIndex',[
+        return view('user.home.allGalleries',[
             'posts' => $posts
         ]);
     }

@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
                             @if(isset($user->profile->img_path))
-                                <img class="rounded-circle mr-3" src="{{ asset( 'storage/profile_image/' .$user->profile->img_path) }}" width="50" height="50">
+                                <img class="rounded-circle mr-3" src="{{ $user->profile->img_path }}" width="50" height="50">
                             @else
                                 <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="50" height="50">
                             @endif

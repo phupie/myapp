@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Profile;
 use Socialite;
 
 class LoginController extends Controller
@@ -75,7 +76,11 @@ class LoginController extends Controller
     
     public function redirectPath()
     {
-        return '/';
+        if (isset(auth()->user()->profile)) {
+            return '/';
+        } else {
+            return 'user/home';
+        }
     }
     
     public function redirectToGoogle()
