@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h1 class="font-italic">ユーザー一覧</h1>
+            <h1 class="display-3 font-italic">User</h1>
             <div id="app">
                 @foreach ($all_users as $user)
                     <div class="card">

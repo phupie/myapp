@@ -11,7 +11,8 @@ class Search
           $query = Gallery::query();
 
           if(!empty($keyword)) {
-          $galleries = $query->where('title','like', '%' .$keyword. '%')
+          $galleries = $query->withCount('favorites')
+                             ->where('title','like', '%' .$keyword. '%')
                              ->orWhere('explanation','like', '%' .$keyword. '%')
                              ->orWhereHas('tags', function ($tag) use ($keyword){
                                 $tag->where('name', 'like', '%' . $keyword . '%');

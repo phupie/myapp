@@ -43,6 +43,7 @@ class Gallery extends Model
     {
         return $this->belongsToMany(Tag::class, 'gallery_tag');
     }
+    
     //投稿
     public function galleryStore(Int $user_id, Array $data)
     {
@@ -77,18 +78,18 @@ class Gallery extends Model
     //ユーザーギャラリー取得
     public function getUserTimeLine(Int $user_id)
     {
-        return $this->withCount('favorites')->where('user_id',$user_id)->orderBy('created_at', 'DESC')->get();
+        return $this->withCount('favorites')->where('user_id',$user_id)->orderBy('created_at', 'DESC')->paginate(20);
     }
     //ストーリーに応じたギャラリー取得
     public function getProfileTimeLine(Int $story_num)
     {
-        return $this->withCount('favorites')->where('area', '<=', $story_num)->orderBy('created_at', 'DESC')->get();
+        return $this->withCount('favorites')->where('area', '<=', $story_num)->orderBy('created_at', 'DESC')->paginate(20);
     }
     //フォローユーザーギャラリー取得
     public function getTimeLines(Int $user_id, Array $follow_ids)
     {
         $follow_ids[] = $user_id;
-        return $this->withCount('favorites')->whereIn('user_id',$follow_ids)->orderBy('created_at', 'DESC')->get();
+        return $this->withCount('favorites')->whereIn('user_id',$follow_ids)->orderBy('created_at', 'DESC')->paginate(20);
     }
     //ユーザーギャラリー数
     public function getGalleryCount(Int $user_id)

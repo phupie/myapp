@@ -1,7 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Sacramento');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=DotGothic16&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
 
 body { 
-	background: #dbe2ef !important;
+	background: #BDBDBD !important;
+	font-family: 'DotGothic16', sans-serif !important;
 	.card {
 	    background: #112d4e;
 	    border-color: #000000;
@@ -16,10 +19,16 @@ body {
 	.features-icons { 
 		background-color: #BDBDBD; 
 	}
+	h1 {
+		font-family: 'Amatic SC', cursive;
+	}
+	.showcase {
+		background: #dbe2ef;
+	}
 }
 
-h1 {
-	font-family: 'Sacramento', cursive;
+
+body {
 }
 
 nav {
@@ -93,4 +102,58 @@ section {
 animation: heartAnimation .2s;
 /* アイコン色を黒から赤へ変更する */
 color: #e2264d;
+}
+
+.snip1217 {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.snip1217 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.snip1217 li {
+  display: inline-block;
+  list-style: outside none none;
+  margin: 0.5em 1.5em;
+  padding: 0;
+}
+.snip1217 a {
+  padding: 0.3em 0;
+  color: rgba(255, 255, 255, 0.5);
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+}
+.snip1217 a:before,
+.snip1217 a:after {
+  height: 3px;
+  position: absolute;
+  content: '';
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+  background-color: #00adb5;
+  width: 0;
+}
+.snip1217 a:before {
+  top: 0;
+  left: 0;
+}
+.snip1217 a:after {
+  bottom: 0;
+  right: 0;
+}
+.snip1217 a:hover,
+.snip1217 .current a {
+  color: #ffffff;
+}
+.snip1217 a:hover:before,
+.snip1217 .current a:before,
+.snip1217 a:hover:after,
+.snip1217 .current a:after {
+  width: 100%;
 }

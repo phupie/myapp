@@ -107,6 +107,7 @@
                 </div>
             @endforeach
         </div>
+        {!! $timelines->render() !!}
     </div>
 @endif
 @endsection

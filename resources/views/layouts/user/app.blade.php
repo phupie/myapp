@@ -32,9 +32,9 @@
         }
     </style>
 </head>
-<body>
+<body style="padding-top: 60px;">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand mr-0" href="{{ url('/') }}">
                     <img src="/storage/sample/12_Primary_logo_on_transparent_414x63.png" height="40">
@@ -45,7 +45,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto align-items-center">
+                    <ul class="navbar-nav mr-auto align-items-center snip1217">
                         <li class="nav-item mr-2">
                             <form class="d-flex" action="{{ url('user/galleries/search') }}" method="post">
                                 @csrf
@@ -60,10 +60,13 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto align-items-center">
+                    <ul class="navbar-nav ml-auto align-items-center snip1217">
                         <!-- Authentication Links -->
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('user/galleries/create') }}">投稿する</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('user/home/galleries') }}">ホームギャラリー</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('user/galleries') }}">マイギャラリー</a>
@@ -71,6 +74,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('user/users') }}">ユーザー一覧</a>
                             </li>
+                    </ul>
+                    <ul class="navbar-nav align-items-center">
                         @unless (Auth::guard('user')->check())
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('user.login') }}">{{ __('Login') }}</a>
@@ -108,7 +113,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="pt-4">
             @yield('content')
         </main>
     </div>

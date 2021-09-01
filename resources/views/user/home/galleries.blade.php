@@ -1,14 +1,15 @@
 @extends('layouts.user.app')
 
 @section('content')
-<h1 class="display-3 font-italic text-center">Gallery</h1>
-<div class="container-fluid">
-    <div class="d-flex justify-content-end">
-        <div class="row">
-            <a href="{{ url('user/home/all') }}" class="btn btn-primary col-md-11">すべてのギャラリー</a>
-            <p class="col-md-12">※現在、プロフィールの設定に応じたギャラリーを表示してます</p>
-        </div>
+<div class="row">
+    <div class="col-lg-3"></div>
+    <h1 class="col-lg-6 display-3 font-italic text-center">Gallery</h1>
+    <div class="col-lg-3 text-center align-items-center">
+        <a href="{{ url('user/home/all') }}" class="btn btn-primary col-md-10 mt-3">すべてのギャラリー<i class="fas fa-arrow-circle-right"></i></a>
+        <p class="col-md-10 mx-auto px-0 mb-0">※現在、プロフィールの設定に応じたギャラリーを表示しています</p>
     </div>
+</div>
+<div class="container-fluid">
     <div class="row row-cols-md-2 row-cols-xl-3" data-masonry='{"percentPosition": true }'>
         @if (isset($timelines))
             @foreach($timelines as $timeline)

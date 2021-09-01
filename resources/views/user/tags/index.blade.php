@@ -1,7 +1,7 @@
 @extends('layouts.user.app')
 
 @section('content')
-<h1 class="display-3 font-italic text-center">タグ一覧</h1>
+<h1 class="display-3 font-italic text-center">Tags</h1>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

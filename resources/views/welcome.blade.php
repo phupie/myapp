@@ -9,7 +9,7 @@
         </header>
         <!-- Icons Grid-->
         <div class="">
-            <section class="features-icons text-center">
+            <section class="features-icons text-center py-5">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-4">
@@ -25,33 +25,34 @@
             <section class="showcase text-center">
                 <div class="container p-0">
                     <h1 class="row pt-4 justify-content-center">投稿のルール</h1>
-                    <div class="row g-0 mb-2">
+                    <div class="row g-0 py-5">
                         <div class="col-lg-12 text-white" style="background-image: url('assets/img/bg-showcase-1.jpg')"></div>
                         <div class="col-lg-12 my-auto">
-                            <h2>風景や建物が主役！！</h2>
-                            <p class="lead mb-0">エオルゼア美術館ではその名の通り美術品を飾ってもらいたいです。<br>キャラクターが主役になっているスクリーンショットではなく、風景や建物を主役としたスクリーンショットを投稿しましょう！<br>（キャラクターを写す場合はあくまでアクセント）</p>
+                            <h2 class="font-italic"><i class="fas fa-camera-retro" style="color: #339af0;"></i>風景や建物が主役！！</h2>
+                            <p class="lead mb-0 font-weight-bold">エオルゼア美術館ではその名の通り美術品を飾ってください。<br>キャラクターが主役になっているスクリーンショットではなく、風景や建物を主役としたスクリーンショットを投稿しましょう！<br>（キャラクターを写す場合はあくまで脇役）</p>
                         </div>
                     </div>
-                    <div class="row g-0 mb-2">
+                    <div class="row g-0 py-5">
                         <div class="col-lg-12 text-white" style="background-image: url('assets/img/bg-showcase-2.jpg')"></div>
                         <div class="col-lg-12 my-auto">
-                            <h2>ゲーム内のグループポーズを活用しよう！</h2>
-                            <p class="lead mb-0">FF14ではグループポーズというとても便利な機能があります。<br>それを活用して風景画のクオリティを上げましょう！ステッカー機能等も使用してかまいません。</p>
+                            <h2 class="font-italic"><i class="fas fa-camera-retro" style="color: #339af0;"></i>ゲーム内のグループポーズを活用しよう！</h2>
+                            <p class="lead mb-0 font-weight-bold">FF14ではグループポーズというとても便利な機能があります。<br>それを活用して風景画のクオリティを上げましょう！ステッカー機能等も使用してかまいません。</p>
                         </div>
                     </div>
-                    <div class="row g-0 mb-2">
-                        <div class="col-lg-12 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-3.jpg')"></div>
-                        <div class="col-lg-12 order-lg-1 my-auto showcase-text">
-                            <h2>「イイ！ね」やコメントをしよう！</h2>
-                            <p class="lead mb-0">他の人が投稿したギャラリーを気に入ったらイイねをしましょう！<br>また、コメントでここが好きというところを発言していきましょう！</p>
+                    <div class="row g-0 py-5">
+                        <img class="col-lg-6 text-white showcase-img" src="{{ asset('storage/sample/tzeBB416vcROLod1630377526_1630377706.png') }}">
+                        <img class="col-lg-6 text-white showcase-img h-100" src="{{ asset('storage/sample/5b53cd8c20747605c6f49b224ee97ad7.png') }}">
+                        <div class="col-lg-12 my-auto showcase-text">
+                            <h2 class="font-italic"><i class="fas fa-camera-retro" style="color: #339af0;"></i>「イイね!」やコメントをしよう！</h2>
+                            <p class="lead mb-0 font-weight-bold">他の人が投稿したギャラリーを気に入ったらイイねをしましょう！<br>また、コメントでここが好きというところを発言していきましょう！</p>
                         </div>
                     </div>
                 </div>
             </section>
             <!-- Testimonials-->
-            <section class="testimonials text-center bg-light">
+            <section class="testimonials text-center">
                 <div class="container">
-                    <h2 class="mb-3">さぁ、皆さんも新規登録・ログインして投稿していきましょう！</h2>
+                    <h2 class="mb-3 py-5">さぁ、皆さんも新規登録・ログインして投稿していきましょう！</h2>
                     <div class="row">
                         @unless (Auth::guard('user')->check())
                                 <div class="col-lg-12">
@@ -82,7 +83,7 @@
             <!-- Call to Action-->
         </div>
         <!-- Footer-->
-        <footer class="footer bg-light">
+        <footer class="footer">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 h-100 text-center text-lg-end my-auto">

@@ -77,6 +77,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
         
         //TOP page
         Route::resource('home', 'HomeController', ['only' => 'index']);
+        
+        //User
+        Route::resource('users', 'UserController', ['only' => ['index', 'destroy']]);
     });
 });
 
