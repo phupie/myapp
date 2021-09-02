@@ -53,7 +53,7 @@
                                     @method('DELETE')
 
                                     <a href="{{ url('user/galleries/' .$gallery->id .'/edit') }}" class="dropdown-item">編集</a>
-                                    <button type="submit" class="dropdown-item del-btn" onclick="deleteConfirm('delele');return false">削除</button>
+                                    <button type="submit" class="dropdown-item del-btn" onclick="deleteConfirm('delele');return false;">削除</button>
                                 </form>
                             </div>
                         </div>

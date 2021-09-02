@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Report;
+use App\Models\Comment;
 
 class CommentController extends Controller
 {
@@ -14,7 +16,15 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $admin = auth()->user();
+        
+        $reports = Report::paginate(20);
+        
+        //報告のあったコメント表示
+        return view('admin.comments.index', [
+            'admin' => $admin,
+            'reports' => $reports
+        ]);
     }
 
     /**
@@ -80,6 +90,11 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admin = auth()->user();
+        if ($admin->id === 1) {
+            Comment::findOrFail($id)->delete();
+            return back();
+        }
+        return redirect('admin/comments');
     }
 }

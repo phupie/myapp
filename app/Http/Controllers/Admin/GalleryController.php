@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Gallery;
 
 class GalleryController extends Controller
 {
@@ -14,7 +15,14 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        //
+        $admin = auth()->user();
+        
+        $galleries = Gallery::paginate(20);
+        
+        return view('admin.galleries.index', [
+            'admin' => $admin,
+            'galleries' => $galleries
+        ]);
     }
 
     /**
@@ -80,6 +88,11 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admin = auth()->user();
+        if ($admin->id === 1) {
+            Gallery::findOrFail($id)->delete();
+            return back();
+        }
+        return redirect('admin/galleries');
     }
 }

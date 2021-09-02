@@ -80,6 +80,12 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
         
         //User
         Route::resource('users', 'UserController', ['only' => ['index', 'destroy']]);
+        
+        //Gallery
+        Route::resource('galleries', 'GalleryController', ['only' => ['index', 'destroy']]);
+        
+        //Comment
+        Route::resource('comments', 'CommentController', ['only' => ['index', 'destroy']]);
     });
 });
 
