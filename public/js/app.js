@@ -56059,6 +56059,20 @@ window.deleteConfirm = function (formId) {
   });
 };
 
+window.previewImage = function (obj) {
+  var fileReader = new FileReader();
+
+  fileReader.onload = function () {
+    document.getElementById('preview').src = fileReader.result;
+  };
+
+  fileReader.readAsDataURL(obj.files[0]);
+};
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

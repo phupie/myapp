@@ -36,7 +36,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark shadow-sm fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand mr-0" href="{{ url('/') }}">
+                <a class="navbar-brand mr-0" href="{{ url('/') }}"　data-toggle="tooltip" title="Top page">
                     <img src="/storage/sample/12_Primary_logo_on_transparent_414x63.png" height="40">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -51,6 +51,12 @@
                                 @csrf
                                 @method('GET')
                                 <input type="text" class="form-control me-2" type="search" placeholder="フリーワード検索" aria-label="Search" name="keyword">
+                                <select id="area" type="text" class="form-control" aria-label="Search" name="areaName">
+                                    @foreach(config('area') as $index => $name)
+                                        <option value="" hidden>エリアで検索</option>
+                                        <option value="{{ $index }}">{{ $name }}</option>
+                                    @endforeach
+                                </select>
                                 <button class="btn btn-outline-light" type="submit"><i class="px-2 fas fa-search"></i></button>
                             </form>
                         </li>
@@ -66,22 +72,22 @@
                                 <a class="nav-link" href="{{ url('user/galleries/create') }}">投稿する</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('user/home/galleries') }}">ホームギャラリー</a>
+                                <a class="nav-link" href="{{ url('user/home/galleries') }}" data-toggle="tooltip" title="全ユーザーの投稿">ホームギャラリー</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('user/galleries') }}">マイギャラリー</a>
+                                <a class="nav-link" href="{{ url('user/galleries') }}" data-toggle="tooltip" title="フォローユーザーの投稿">マイギャラリー</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('user/users') }}">ユーザー一覧</a>
                             </li>
                     </ul>
-                    <ul class="navbar-nav align-items-center">
+                    <ul class="navbar-nav ml-4 align-items-center">
                         @unless (Auth::guard('user')->check())
-                            <li class="nav-item">
+                            <li class="nav-item ml-4 snip1217">
                                 <a class="nav-link" href="{{ route('user.login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('user.register'))
-                                <li class="nav-item">
+                                <li class="nav-item ml-5 snip1217">
                                     <a class="nav-link" href="{{ route('user.register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif

@@ -4,7 +4,9 @@
 
 body { 
 	background: #BDBDBD !important;
-	font-family: 'DotGothic16', sans-serif !important;
+	section {
+	  font-family: 'DotGothic16', sans-serif !important;
+	}
 	.card {
 	    background: #112d4e;
 	    border-color: #000000;

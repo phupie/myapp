@@ -11,6 +11,11 @@ class Report extends Model
         return $this->belongsTo(User::class);
     }
     
+    public function comment()
+    {
+        return $this->belongsTo(Comment::class);
+    }
+    
     public function reportStore(Int $user_id, Array $data)
     {
         $this->user_id = $user_id;

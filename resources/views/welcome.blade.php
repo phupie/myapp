@@ -26,16 +26,18 @@
                 <div class="container p-0">
                     <h1 class="row pt-4 justify-content-center">投稿のルール</h1>
                     <div class="row g-0 py-5">
+                        <img class="col-lg-12 text-white showcase-img mb-5" src="{{ asset('storage/sample/ffxiv_20210719_122754_197.png') }}">
                         <div class="col-lg-12 text-white" style="background-image: url('assets/img/bg-showcase-1.jpg')"></div>
                         <div class="col-lg-12 my-auto">
-                            <h2 class="font-italic"><i class="fas fa-camera-retro" style="color: #339af0;"></i>風景や建物が主役！！</h2>
+                            <h2 class="font-italic"><i class="fas fa-camera-retro mr-1" style="color: #339af0;"></i>風景や建物が主役！！</h2>
                             <p class="lead mb-0 font-weight-bold">エオルゼア美術館ではその名の通り美術品を飾ってください。<br>キャラクターが主役になっているスクリーンショットではなく、風景や建物を主役としたスクリーンショットを投稿しましょう！<br>（キャラクターを写す場合はあくまで脇役）</p>
                         </div>
                     </div>
                     <div class="row g-0 py-5">
+                        <img class="col-lg-12 text-white showcase-img mb-5" src="{{ asset('storage/sample/ffxiv_20210904_145856_602.png') }}">
                         <div class="col-lg-12 text-white" style="background-image: url('assets/img/bg-showcase-2.jpg')"></div>
                         <div class="col-lg-12 my-auto">
-                            <h2 class="font-italic"><i class="fas fa-camera-retro" style="color: #339af0;"></i>ゲーム内のグループポーズを活用しよう！</h2>
+                            <h2 class="font-italic"><i class="fas fa-camera-retro mr-1" style="color: #339af0;"></i>ゲーム内のグループポーズを活用しよう！</h2>
                             <p class="lead mb-0 font-weight-bold">FF14ではグループポーズというとても便利な機能があります。<br>それを活用して風景画のクオリティを上げましょう！ステッカー機能等も使用してかまいません。</p>
                         </div>
                     </div>

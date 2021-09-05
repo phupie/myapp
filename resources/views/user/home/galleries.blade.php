@@ -19,9 +19,13 @@
                         <a href="{{ url('user/galleries/' .$timeline->id) }}"><img class="card-img-top" src="{{ $timeline->img_path }}"/></a>
                         <!-- Product details-->
                         <div class="card-footer d-flex bd-highlight w-100 py-1">
-                            <img src="{{ $timeline->user->profile->img_path }}" class="rounded-circle mr-1" width="30" height="30">
+                            @if(isset($timeline->user->profile->img_path))
+                                <img class="rounded-circle mr-1" src="{{ $timeline->user->profile->img_path }}" width="30" height="30">
+                            @else
+                                <img class="rounded-circle mr-1" src="{{ asset( 'storage/image/79511279656599.png') }}" width="30" height="30">
+                            @endif
                             <div class="mr-3 d-flex align-items-center mr-auto">
-                                <a href="{{ url('user/users/' .$timeline->user->id) }}" class="text-light mr-1">{{ $timeline->user->profile->display_name }}</a>
+                                <a href="{{ url('user/users/' .$timeline->user->id) }}" class="text-light mr-1">@if(!empty($timeline->user->profile)){{ $timeline->user->profile->display_name }}@else{{ $timeline->user->name }}@endif </a>
                                 <p class="mb-0 text-secondary">＠{{ $timeline->user->name }}</p>
                                 <div class="mb-0 text-secondary mr-auto small">
                                 ・{{ $timeline->created_at->format('Y-m-d H:i') }}

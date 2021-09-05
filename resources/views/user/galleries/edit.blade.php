@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card text-light">
                 <div class="card-header">編集する</div>
 
                 <div class="card-body">
@@ -13,10 +13,10 @@
                         @csrf
                         @method('PUT')
 
-                        <div class="form-group mb-0">
-                            <label for="img">あなたの一枚</label>
+                        <div class="form-group">
+                            <label for="img">あなたの一枚<small class="text-danger">画像を変更する場合は一度削除してから投稿しなおしてください。</small></label>
                             <input type="file" hidden id="img" name="img" readonly>
-                            <img class="w-100" src="{{ asset('storage/image/' .$galleries->img_path)}}">
+                            <img class="w-100" src="{{ $galleries->img_path }}">
                         </div>
                         
                         <div class="form-row">

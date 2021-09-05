@@ -169,8 +169,9 @@ class GalleryController extends Controller
     public function search(Request $request)
     {
         $keyword = $request->keyword;
+        $keyword_area = $request->areaName;
         
-        list($galleries,$message) = Search::searchGallery($keyword);
+        list($galleries,$message) = Search::searchGallery($keyword,$keyword_area);
         
         return view('user/galleries/search',[
             'galleries' => $galleries,

@@ -2,6 +2,9 @@
 
 body {
   background: #BDBDBD !important;
+}
+
+body section {
   font-family: "DotGothic16", sans-serif !important;
 }
 

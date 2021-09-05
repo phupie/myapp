@@ -14,7 +14,9 @@
                             <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="50" height="50">
                         @endif
                         <div class="ml-2 d-flex flex-column">
-                            <a href="{{ url('user/users/' .$gallery->user->id) }}" class="mb-0 text-light">{{ $gallery->user->profile->display_name }}</a>
+                            @if(isset($gallery->user->profile))
+                                <a href="{{ url('user/users/' .$gallery->user->id) }}" class="mb-0 text-light">{{ $gallery->user->profile->display_name }}</a>
+                            @endif
                             <a href="{{ url('user/users/' .$gallery->user->id) }}" class="text-secondary">＠{{ $gallery->user->name }}</a>
                         </div>
                         <div class="mb-0 text-secondary d-flex justify-content-end flex-grow-1">
@@ -60,7 +62,7 @@
                     @endif
                     <div class="mr-3 d-flex align-items-center">
                         <a href="{{ url('user/galleries/' .$gallery->id) }}"><i class="far fa-comment fa-fw"></i></a>
-                        <p class="mb-0 text-secondary">{{ count($gallery->comments) }}</p>
+                        <p class="ml-1 mb-0 text-secondary">{{ count($gallery->comments) }}</p>
                     </div>
                     <div class="d-flex align-items-center">
                         @if (!$gallery->isFavorited(Auth::user()))
@@ -100,7 +102,9 @@
                                             <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="50" height="50">
                                         @endif
                                         <div class="ml-2 d-flex flex-column">
-                                            <a href="{{ url('user/users/' .$user->id) }}" class="mb-0 text-light">@if(!empty($user->profile)){{ $user->profile->display_name }}@else匿名@endif</a>
+                                            @if(isset($user->profile))
+                                                <a href="{{ url('user/users/' .$user->id) }}" class="mb-0 text-light">{{ $user->profile->display_name }}</a>
+                                            @endif
                                             <a href="{{ url('user/users/' .$user->id) }}" class="text-secondary">＠{{ $user->name }}</a>
                                         </div>
                                     </div>
@@ -136,7 +140,9 @@
                                     <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="50" height="50">
                                 @endif
                                 <div class="ml-2 d-flex flex-column">
-                                    <a href="{{ url('user/users/' .$comment->user->id) }}" class="mb-0 text-light">{{ $comment->user->profile->display_name }}</a>
+                                    @if(isset($comment->user->profile))
+                                        <a href="{{ url('user/users/' .$comment->user->id) }}" class="mb-0 text-light">{{ $comment->user->profile->display_name }}</a>
+                                    @endif
                                     <a href="{{ url('user/users/' .$comment->user->id) }}" class="text-secondary">＠{{ $comment->user->name }}</a>
                                 </div>
                                 <div class="d-flex justify-content-end flex-grow-1">

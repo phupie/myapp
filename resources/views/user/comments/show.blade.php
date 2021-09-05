@@ -1,6 +1,6 @@
 @extends('layouts.user.app')
 
-@section('title', 'ギャラリー作成')
+@section('title', 'コメント報告')
 
 @section('content')
 <div class="container">
@@ -16,7 +16,9 @@
                             <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="50" height="50">
                         @endif
                         <div class="ml-2 d-flex flex-column">
-                            <a href="{{ url('user/users/' .$comment->user->id) }}" class="mb-0 text-light">{{ $comment->user->profile->display_name }}</a>
+                            @if(isset($comment->user->profile))
+                                <a href="{{ url('user/users/' .$comment->user->id) }}" class="mb-0 text-light">{{ $comment->user->profile->display_name }}</a>
+                            @endif
                             <a href="{{ url('user/users/' .$comment->user->id) }}" class="text-secondary">＠{{ $comment->user->name }}</a>
                         </div>
                         <div class="d-flex justify-content-end flex-grow-1">
