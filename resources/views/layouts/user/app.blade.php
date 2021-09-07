@@ -37,7 +37,7 @@
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand mr-0" href="{{ url('/') }}"　data-toggle="tooltip" title="Top page">
-                    <img src="/storage/sample/12_Primary_logo_on_transparent_414x63.png" height="40">
+                    <img src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/12_Primary_logo_on_transparent_414x63.png" height="40">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -69,7 +69,7 @@
                     <ul class="navbar-nav ml-auto align-items-center snip1217">
                         <!-- Authentication Links -->
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('user/galleries/create') }}">投稿する</a>
+                                <a class="nav-link m-0" href="{{ url('user/galleries/create') }}">投稿する</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('user/home/galleries') }}" data-toggle="tooltip" title="全ユーザーの投稿">ホームギャラリー</a>

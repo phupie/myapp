@@ -22,7 +22,7 @@
     <!-- Styles -->
     <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ secure_asset('css/style.css') }}" rel="stylesheet">
-    <link href="{{ secure_asset('css/top.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/top.css') }}" rel="stylesheet" media="screen and (min-width:1024px)">
     <!-- Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <style>
@@ -33,7 +33,7 @@
 </head>
 <body style="padding-top: 60px;">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-transparent">
+        <nav class="navbar navbar-expand-xl navbar-dark fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand mr-0" href="{{ url('/') }}"　data-toggle="tooltip" title="Top page">
                     <img src="/storage/sample/12_Primary_logo_on_transparent_414x63.png" height="40">

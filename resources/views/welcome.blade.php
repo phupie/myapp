@@ -5,8 +5,8 @@
 @section('content')
 <!-- Masthead-->
         <header class="masthead">
-            <div style="margin-top: -88px; background: black;">
-                <img src="{{ asset('storage/sample/GGpc6fd6hvRaFTsQM5hq1629528068-1629528327 (1).gif') }}" class="w-100" style="margin-top: -88px; opacity: 0.6;"></img>
+            <div>
+                <img src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/GGpc6fd6hvRaFTsQM5hq1629528068-1629528327+(1).gif" class="w-100"></img>
             </div>
         </header>
         <!-- Icons Grid-->
@@ -16,7 +16,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-4">
                             <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                                <img src="{{ asset('storage/sample/14_Primary_logo_on_transparent_414x63.png') }}">
+                                <img src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/14_Primary_logo_on_transparent_414x63.png">
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                 <div class="container p-0">
                     <h1 class="row pt-4 justify-content-center">投稿のルール</h1>
                     <div class="row g-0 py-5">
-                        <img class="col-lg-12 text-white showcase-img mb-5" src="{{ asset('storage/sample/ffxiv_20210719_122754_197.png') }}">
+                        <img class="col-lg-12 text-white showcase-img mb-5" src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/ffxiv_20210719_122754_197.png">
                         <div class="col-lg-12 text-white" style="background-image: url('assets/img/bg-showcase-1.jpg')"></div>
                         <div class="col-lg-12 my-auto">
                             <h2 class="font-italic"><i class="fas fa-camera-retro mr-1" style="color: #339af0;"></i>風景や建物が主役！！</h2>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="row g-0 py-5">
-                        <img class="col-lg-12 text-white showcase-img mb-5" src="{{ asset('storage/sample/ffxiv_20210904_145856_602.png') }}">
+                        <img class="col-lg-12 text-white showcase-img mb-5" src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/ffxiv_20210904_145856_602.png">
                         <div class="col-lg-12 text-white" style="background-image: url('assets/img/bg-showcase-2.jpg')"></div>
                         <div class="col-lg-12 my-auto">
                             <h2 class="font-italic"><i class="fas fa-camera-retro mr-1" style="color: #339af0;"></i>ゲーム内のグループポーズを活用しよう！</h2>
@@ -44,8 +44,8 @@
                         </div>
                     </div>
                     <div class="row g-0 py-5">
-                        <img class="col-lg-6 text-white showcase-img" src="{{ asset('storage/sample/tzeBB416vcROLod1630377526_1630377706.png') }}">
-                        <img class="col-lg-6 text-white showcase-img h-100" src="{{ asset('storage/sample/5b53cd8c20747605c6f49b224ee97ad7.png') }}">
+                        <img class="col-lg-6 text-white showcase-img" src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/tzeBB416vcROLod1630377526_1630377706.png">
+                        <img class="col-lg-6 text-white showcase-img h-100" src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/5b53cd8c20747605c6f49b224ee97ad7.png">
                         <div class="col-lg-12 my-auto showcase-text">
                             <h2 class="font-italic"><i class="fas fa-camera-retro" style="color: #339af0;"></i>「イイね!」やコメントをしよう！</h2>
                             <p class="lead mb-0 font-weight-bold">他の人が投稿したギャラリーを気に入ったらイイねをしましょう！<br>また、コメントでここが好きというところを発言していきましょう！</p>

@@ -4,6 +4,12 @@
 
 body { 
 	background: #BDBDBD !important;
+	.collapse {
+	  background: #212121;
+	}
+	header {
+	  margin-top: -24px;
+	}
 	section {
 	  font-family: 'DotGothic16', sans-serif !important;
 	}

@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="/myapp/storage/app/public/sample/12_Primary_logo_on_transparent_414x63.png" width="400"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/12_Primary_logo_on_transparent_414x63.png" width="400"></a></p>
 
 
 ## About Laravel

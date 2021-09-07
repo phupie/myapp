@@ -1,59 +1,75 @@
 @charset "UTF-8";
 
-nav {
-  padding: 30px 16px !important;
-  transition: 0.5s;
-  /* ロゴのデザイン
-  .logo {
-    color: white;
-    text-decoration: none;
-    font-size: 2rem;
-    // アニメーションの変化時間
+@media screen and (min-width: 1200px) {
+  header div {
+    background: black !important;
+    margin-top: -88px;
+  }
+
+  header div img {
+    opacity: 0.6;
+  }
+
+  nav {
+    background-color: rgba(255, 0, 0, 0) !important;
+    padding: 30px 16px !important;
     transition: 0.5s;
+    /* ロゴのデザイン
+    .logo {
+      color: white;
+      text-decoration: none;
+      font-size: 2rem;
+      // アニメーションの変化時間
+      transition: 0.5s;
+    }*/
+  }
+
+  nav div {
+    background-color: rgba(255, 0, 0, 0) !important;
+  }
+
+  nav ul li a {
+    color: white;
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  nav ul li {
+    list-style: none;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: white;
+    margin: 0 15px;
+    transition: 0.5s;
+  }
+
+  /* スクロールするためのsectionの装飾
+  .section {
+    height: 100vh;
+
+    &.section-a {
+      background: black;
+    }
+
+    &.section-b {
+      background: white;
+    }
   }*/
-}
 
-nav ul li a {
-  color: white;
-}
-
-nav ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-nav ul li {
-  list-style: none;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: white;
-  margin: 0 15px;
-  transition: 0.5s;
-}
-
-/* スクロールするためのsectionの装飾
-.section {
-  height: 100vh;
-
-  &.section-a {
-    background: black;
+  nav.scroll-nav {
+    padding: 8px 16px !important;
+    background: #212121 !important;
+    transition: 0.5s;
   }
 
-  &.section-b {
-    background: white;
+  nav.scroll-nav ul li a {
+    color: gray;
   }
-}*/
-
-nav.scroll-nav {
-  padding: 8px 16px !important;
-  background: #212121 !important;
-  transition: 0.5s;
-}
-
-nav.scroll-nav ul li a {
-  color: gray;
 }
 
