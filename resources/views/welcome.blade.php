@@ -1,11 +1,13 @@
-@extends('layouts.user.app')
+@extends('layouts.top')
 
 @section('title', 'エオルゼア美術館')
 
 @section('content')
 <!-- Masthead-->
         <header class="masthead">
-                <img src="{{ asset('storage/sample/GGpc6fd6hvRaFTsQM5hq1629528068-1629528327 (1).gif') }}" class="w-100" style="margin-top: -24px;"></img>
+            <div style="margin-top: -88px; background: black;">
+                <img src="{{ asset('storage/sample/GGpc6fd6hvRaFTsQM5hq1629528068-1629528327 (1).gif') }}" class="w-100" style="margin-top: -88px; opacity: 0.6;"></img>
+            </div>
         </header>
         <!-- Icons Grid-->
         <div class="">

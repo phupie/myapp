@@ -14,6 +14,8 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/croppie.js', 'public/js')
     .js('resources/js/favorite.js', 'public/js')
+    .js('resources/js/top.js', 'public/js')
     .sass('resources/sass/croppie.scss', 'public/css')
     .sass('resources/sass/style.scss', 'public/css')
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/top.scss', 'public/css');

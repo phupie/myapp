@@ -13,8 +13,7 @@
     <script src="{{ secure_asset('js/app.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ secure_asset('js/croppie.js') }}" type="module"></script>
-    <script src="{{ secure_asset('js/favorite.js') }}" type="module"></script>
+    <script src="{{ secure_asset('js/top.js') }}" type="module"></script>
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -22,8 +21,8 @@
 
     <!-- Styles -->
     <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ secure_asset('css/croppie.css') }}" rel="stylesheet">
     <link href="{{ secure_asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/top.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <style>
@@ -34,7 +33,7 @@
 </head>
 <body style="padding-top: 60px;">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-transparent">
             <div class="container-fluid">
                 <a class="navbar-brand mr-0" href="{{ url('/') }}"　data-toggle="tooltip" title="Top page">
                     <img src="/storage/sample/12_Primary_logo_on_transparent_414x63.png" height="40">

@@ -3,6 +3,8 @@
     "/css/croppie.css": "/css/croppie.css",
     "/css/style.css": "/css/style.css",
     "/css/app.css": "/css/app.css",
+    "/css/top.css": "/css/top.css",
     "/js/croppie.js": "/js/croppie.js",
-    "/js/favorite.js": "/js/favorite.js"
+    "/js/favorite.js": "/js/favorite.js",
+    "/js/top.js": "/js/top.js"
 }
