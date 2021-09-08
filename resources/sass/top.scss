@@ -19,48 +19,19 @@
   
     // アニメーションの変化時間
     transition: 0.5s;
-  
-    /* ロゴのデザイン
-    .logo {
-      color: white;
-      text-decoration: none;
-      font-size: 2rem;
-      // アニメーションの変化時間
-      transition: 0.5s;
-    }*/
-  
-    // ナビゲーションの項目を横並びにする
     ul {
-      display: flex;
-      justify-content: center;
-      align-items: center;
   
       li {
         list-style: none;
   
         a {
           text-decoration: none;
-          color: white;
-          margin: 0 15px;
           // アニメーションの変化時間
           transition: 0.5s;
         }
       }
     }
   }
-  
-  /* スクロールするためのsectionの装飾
-  .section {
-    height: 100vh;
-  
-    &.section-a {
-      background: black;
-    }
-  
-    &.section-b {
-      background: white;
-    }
-  }*/
   
   // スクロールして.scroll-navクラスがついたときのヘッダーデザイン
   nav.scroll-nav {

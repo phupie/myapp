@@ -12,7 +12,7 @@
                             @if(isset($user->profile->img_path))
                                 <img class="rounded-circle mr-3" src="{{ $user->profile->img_path }}" width="50" height="50">
                             @else
-                                <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="50" height="50">
+                                <img class="rounded-circle mr-3" src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/79511279656599.png" width="50" height="50">
                             @endif
                             <div class="ml-2 d-flex flex-column">
                                 <a href="{{ url('user/users/' .$user->id) }}" class=" text-light mb-0">@if(!empty($user->profile)){{ $user->profile->display_name }}@else匿名@endif </a>

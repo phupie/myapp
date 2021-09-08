@@ -1,5 +1,7 @@
 @extends('layouts.user.app')
 
+@section('title', '検索結果')
+
 @section('content')
 <h1 class="display-3 font-italic text-center">Gallery</h1>
     @if(!empty($message))
@@ -18,7 +20,7 @@
                             @if(isset($gallery->user->profile->img_path))
                                 <img src="{{ $gallery->user->profile->img_path }}" class="rounded-circle mr-1" width="30" height="30">
                             @else
-                                <img class="rounded-circle mr-1" src="{{ asset( 'storage/image/79511279656599.png') }}" width="30" height="30">
+                                <img class="rounded-circle mr-1" src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/79511279656599.png" width="30" height="30">
                             @endif
                             <div class="mr-3 d-flex align-items-center mr-auto">
                                 <a href="{{ url('user/users/' .$gallery->user->id) }}" class="text-light mr-1">@if(!empty($gallery->user->profile)){{ $gallery->user->profile->display_name }}@else{{ $gallery->user->name }}@endif</a>

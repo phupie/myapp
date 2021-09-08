@@ -11,7 +11,7 @@
         </header>
         <!-- Icons Grid-->
         <div class="">
-            <section class="features-icons text-center py-5">
+            <section class="features-icons text-center py-4">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-4">
@@ -27,7 +27,7 @@
             <section class="showcase text-center">
                 <div class="container p-0">
                     <h1 class="row pt-4 justify-content-center">投稿のルール</h1>
-                    <div class="row g-0 py-5">
+                    <div class="row g-0 py-4">
                         <img class="col-lg-12 text-white showcase-img mb-5" src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/ffxiv_20210719_122754_197.png">
                         <div class="col-lg-12 text-white" style="background-image: url('assets/img/bg-showcase-1.jpg')"></div>
                         <div class="col-lg-12 my-auto">
@@ -35,7 +35,7 @@
                             <p class="lead mb-0 font-weight-bold">エオルゼア美術館ではその名の通り美術品を飾ってください。<br>キャラクターが主役になっているスクリーンショットではなく、風景や建物を主役としたスクリーンショットを投稿しましょう！<br>（キャラクターを写す場合はあくまで脇役）</p>
                         </div>
                     </div>
-                    <div class="row g-0 py-5">
+                    <div class="row g-0 py-4">
                         <img class="col-lg-12 text-white showcase-img mb-5" src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/ffxiv_20210904_145856_602.png">
                         <div class="col-lg-12 text-white" style="background-image: url('assets/img/bg-showcase-2.jpg')"></div>
                         <div class="col-lg-12 my-auto">
@@ -43,7 +43,7 @@
                             <p class="lead mb-0 font-weight-bold">FF14ではグループポーズというとても便利な機能があります。<br>それを活用して風景画のクオリティを上げましょう！ステッカー機能等も使用してかまいません。</p>
                         </div>
                     </div>
-                    <div class="row g-0 py-5">
+                    <div class="row g-0 py-4">
                         <img class="col-lg-6 text-white showcase-img" src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/tzeBB416vcROLod1630377526_1630377706.png">
                         <img class="col-lg-6 text-white showcase-img h-100" src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/5b53cd8c20747605c6f49b224ee97ad7.png">
                         <div class="col-lg-12 my-auto showcase-text">
@@ -54,9 +54,9 @@
                 </div>
             </section>
             <!-- Testimonials-->
-            <section class="testimonials text-center">
+            <section class="testimonials text-center py-4">
                 <div class="container">
-                    <h2 class="mb-3 py-5">さぁ、皆さんも新規登録・ログインして投稿していきましょう！</h2>
+                    <h2 class="mb-3 py-4">さぁ、皆さんも新規登録・ログインして投稿していきましょう！</h2>
                     <div class="row">
                         @unless (Auth::guard('user')->check())
                                 <div class="col-lg-12">

@@ -1,6 +1,6 @@
 @extends('layouts.user.app')
 
-@section('title', 'ギャラリー作成')
+@section('title', 'ギャラリー投稿')
 
 @section('content')
 <div class="container">

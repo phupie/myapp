@@ -8,7 +8,7 @@
                 @if(isset($user->profile->head_img_path))
                     <img class="card-image-top" src="{{ $user->profile->head_img_path }}">
                 @else
-                    <img class="card-image-top" src="{{ asset( 'storage/image/795112796565.png') }}">
+                    <img class="card-image-top" src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/795112796565.png">
                 @endif
                 <div class="card-body text-light">
                     <div class="d-md-flex flex-row bd-highlight mb-3">
@@ -16,7 +16,7 @@
                             @if(isset($user->profile->img_path))
                                 <img class="rounded-circle mr-3" src="{{ $user->profile->img_path }}" width="150" height="150">
                             @else
-                                <img class="rounded-circle mr-3" src="{{ asset( 'storage/image/79511279656599.png') }}" width="150" height="150">
+                                <img class="rounded-circle mr-3" src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/79511279656599.png" width="150" height="150">
                             @endif
                                 <div class="align-self-center">
                                     <h4>@if(!empty($user->profile)){{ $user->profile->display_name }}@else匿名@endif</h4>
@@ -107,7 +107,7 @@
                 </div>
             @endforeach
         </div>
-        {!! $timelines->render() !!}
+        {{ $timelines->links() }}
     </div>
 @endif
 @endsection

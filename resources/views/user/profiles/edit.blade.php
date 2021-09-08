@@ -1,6 +1,6 @@
 @extends('layouts.user.app')
 
-@section('title', 'プロフィール作成')
+@section('title', 'プロフィール編集')
 
 @section('content')
 <div class="container">
@@ -23,7 +23,7 @@
                                 <label class="btn p-0 hover">
                                     <input type="file" id="image-head" name="image" accept="image/*" class="image-head" style="display:none;">
                                     <div id="image-style"　class="hover-img">
-                                        <img src="{{ $profiles->head_img_path }}" id="image-output-head" class="w-100">
+                                        <img src="@if(isset($profiles->head_img_path)) {{ $profiles->head_img_path }} @else https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/79511279656599.png @endif" id="image-output-head" class="w-100">
                                     </div>
                                     <div class="hover-text  d-flex align-items-center justify-content-center">
                                         <p class="text1 p-0"><i class="fas fa-camera fa-2x"></i></p>
@@ -50,6 +50,7 @@
                             </div>
                             <input type="hidden" id="cropImage-head" name="head_img" value="" />
                         </div>
+                        
                         <label for="">プロフィール画像</label>
                         <div class="form-row pl-1">
                             <div id="input-form" class="form-group col-md-4 d-flex  align-items-center justify-content-center">
@@ -57,7 +58,7 @@
                                     <label class="btn p-0 m-0 hover">
                                         <input type="file" id="image" name="image" accept="image/*" class="image" style="display:none;">
                                         <div id="image-style" width="200px" height="200px">
-                                            <img src="{{ $profiles->img_path }}" id="image-output" class="rounded-circle w-100 fas fa-camera fa-2x" height="200px">
+                                            <img src="@if(isset($profiles->img_path)) {{ $profiles->img_path }} @else https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/79511279656599.png @endif" id="image-output" class="rounded-circle w-100 fas fa-camera fa-2x" height="200px">
                                         </div>
                                         <div class="hover-text rounded-circle d-flex align-items-center justify-content-center">
                                             <p class="text1 m-0"><i class="fas fa-camera fa-2x"></i></p>
@@ -86,6 +87,7 @@
                                     <input type="hidden" id="cropImage" name="img" value=""/>
                                 </div>
                             </div>
+                            
                             <div class="form-group col-md-8">
                                 <div class="form-group">
                                     <label for="display_name">アカウント名<small class="text-secondary ml-1">表示名</small></label>
@@ -97,6 +99,7 @@
                                         </span>
                                     @enderror
                                 </div>
+                                
                                 <div class="form-group">
                                     <label for="job">メインジョブ</label>
                                     <select id="job" type="text" class="form-control @error('job') is-invalid @enderror" name="jobName" required autocomplete="job">
@@ -124,6 +127,7 @@
                                             @endforeach
                                     </select>
                                 </div>
+                                
                                 <div class="form-group">
                                     <label for="story">ストーリー進行度</label>
                                     <select id="story" type="text" class="form-control @error('story') is-invalid @enderror" name="storyName" required autocomplete="story">
@@ -134,7 +138,6 @@
                                     </select>
                                 </div>
                             </div>
-                            
                         </div>
                         
                         <div class="form-group">

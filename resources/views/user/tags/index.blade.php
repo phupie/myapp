@@ -1,5 +1,7 @@
 @extends('layouts.user.app')
 
+@section('title', 'タグ一覧')
+
 @section('content')
 <h1 class="display-3 font-italic text-center">Tags</h1>
 <div class="container">
@@ -22,6 +24,7 @@
                             </h5>
                         </li>
                     @endforeach
+                    {{ $tags->links() }}
                 @endif
             </ul>
         </div>

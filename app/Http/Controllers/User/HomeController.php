@@ -44,7 +44,7 @@ class HomeController extends Controller
     public function all(Gallery $gallery)
     {
         $user = auth()->user();
-        $posts = $gallery->withCount('favorites')->get();
+        $posts = $gallery->withCount('favorites')->paginate(20);
         
         return view('user.home.allGalleries',[
             'posts' => $posts

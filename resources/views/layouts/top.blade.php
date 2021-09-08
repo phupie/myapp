@@ -93,8 +93,8 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle py-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                @if(isset(auth()->user()->profile))
-                                <img src="{{ auth()->user()->profile->img_path }}" class="rounded-circle" width="50" height="50">
+                                @if(isset(auth()->user()->profile->img_path))
+                                    <img src="{{ auth()->user()->profile->img_path }}" class="rounded-circle" width="50" height="50">
                                 @endif
                                     ＠{{ Auth::user()->name }} <span class="caret"></span>
                                 </a>

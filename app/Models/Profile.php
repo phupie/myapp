@@ -21,27 +21,31 @@ class Profile extends Model
     public function profileStore(Int $user_id, Array $data)
     {
         //profile image
-        $cropImageData = base64_decode(explode(",", explode(";", $data['img'])[1])[1]);
-
-        $imagePath = str_random(40) . '.jpeg';
-
-        $storageImagePath = Storage::disk('s3')->put('/uploads/'.$imagePath, $cropImageData, 'public');
-        \file_put_contents($storageImagePath, $cropImageData);
+        if(isset($data['img'])) {
+            $cropImageData = base64_decode(explode(",", explode(";", $data['img'])[1])[1]);
+    
+            $imagePath = str_random(40) . '.jpeg';
+    
+            $storageImagePath = Storage::disk('s3')->put('/uploads/'.$imagePath, $cropImageData, 'public');
+            \file_put_contents($storageImagePath, $cropImageData);
+            $this->img_path = Storage::disk('s3')->url('uploads/' .$imagePath);
+        }
         //header image
-        $head_cropImageData = base64_decode(explode(",", explode(";", $data['head_img'])[1])[1]);
-
-        $head_imagePath = str_random(40) . '.jpeg';
-
-        $head_storageImagePath = Storage::disk('s3')->put('/uploads/'.$head_imagePath, $head_cropImageData, 'public');
-        \file_put_contents($head_storageImagePath, $head_cropImageData);
+        if(isset($data['head_img'])) {
+            $head_cropImageData = base64_decode(explode(",", explode(";", $data['head_img'])[1])[1]);
+    
+            $head_imagePath = str_random(40) . '.jpeg';
+    
+            $head_storageImagePath = Storage::disk('s3')->put('/uploads/'.$head_imagePath, $head_cropImageData, 'public');
+            \file_put_contents($head_storageImagePath, $head_cropImageData);
+            $this->head_img_path = Storage::disk('s3')->url('uploads/' .$head_imagePath);
+        }
         
         $this->user_id = $user_id;
         $this->display_name = $data['display_name'];
         $this->main_job = $data['jobName'];
         $this->story_progress = $data['storyName'];
         $this->introduction = $data['introduction'];
-        $this->img_path = Storage::disk('s3')->url('uploads/' .$imagePath);
-        $this->head_img_path = Storage::disk('s3')->url('uploads/' .$head_imagePath);
         $this->save();
         
         return;

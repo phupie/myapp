@@ -1,12 +1,14 @@
 @extends('layouts.user.app')
 
+@section('title', 'おすすめギャラリー')
+
 @section('content')
 <div class="row">
     <div class="col-lg-3"></div>
     <h1 class="col-lg-6 display-3 font-italic text-center">Gallery</h1>
     <div class="col-lg-3 text-center align-items-center">
         <a href="{{ url('user/home/all') }}" class="btn btn-primary col-md-10 mt-3">すべてのギャラリー<i class="fas fa-arrow-circle-right"></i></a>
-        <p class="col-md-10 mx-auto px-0 mb-0">※現在、プロフィールの設定に応じたギャラリーを表示しています</p>
+        <p class="col-md-10 mx-auto px-0 mb-0">現在、プロフィールの設定に応じたギャラリーを表示しています</p>
     </div>
 </div>
 <div class="container-fluid">
@@ -22,7 +24,7 @@
                             @if(isset($timeline->user->profile->img_path))
                                 <img class="rounded-circle mr-1" src="{{ $timeline->user->profile->img_path }}" width="30" height="30">
                             @else
-                                <img class="rounded-circle mr-1" src="{{ asset( 'storage/image/79511279656599.png') }}" width="30" height="30">
+                                <img class="rounded-circle mr-1" src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/79511279656599.png" width="30" height="30">
                             @endif
                             <div class="mr-3 d-flex align-items-center mr-auto">
                                 <a href="{{ url('user/users/' .$timeline->user->id) }}" class="text-light mr-1">@if(!empty($timeline->user->profile)){{ $timeline->user->profile->display_name }}@else{{ $timeline->user->name }}@endif </a>
@@ -55,6 +57,7 @@
                     </div>
                 </div>
             @endforeach
+            {{ $timelines->links() }}
         @endif
     </div>
 </div>

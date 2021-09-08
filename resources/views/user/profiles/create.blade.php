@@ -22,7 +22,7 @@
                                 <label class="btn p-0 hover">
                                     <input type="file" id="image-head" name="image" accept="image/*" class="image-head" style="display:none;">
                                     <div id="image-style"　class="hover-img">
-                                        <img src="{{ asset('storage/image/795112796565.png') }}" id="image-output-head" class="w-100">
+                                        <img src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/795112796565.png" id="image-output-head" class="w-100">
                                     </div>
                                     <div class="hover-text  d-flex align-items-center justify-content-center">
                                         <p class="text1 p-0"><i class="fas fa-camera fa-2x"></i></p>
@@ -56,7 +56,7 @@
                                     <label class="btn p-0 m-0 hover">
                                         <input type="file" id="image" name="image" accept="image/*" class="image" style="display:none;">
                                         <div id="image-style" width="200px" height="200px">
-                                            <img src="{{ asset('storage/image/79511279656599.png') }}" id="image-output" class="rounded-circle w-100 fas fa-camera fa-2x" height="200px">
+                                            <img src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/79511279656599.png" id="image-output" class="rounded-circle w-100 fas fa-camera fa-2x" height="200px">
                                         </div>
                                         <div class="hover-text rounded-circle d-flex align-items-center justify-content-center">
                                             <p class="text1 m-0"><i class="fas fa-camera fa-2x"></i></p>
@@ -151,7 +151,7 @@
                         <div class="form-group">
                             <label for="introduction">自己紹介
                             </label>
-                            <textarea id="introduction" type="text" class="form-control @error('introduction') is-invalid @enderror" name="introduction" required autocomplete="introduction" row="4">{{ old('introduction') }}
+                            <textarea id="introduction" type="text" class="form-control @error('introduction') is-invalid @enderror" name="introduction" required autocomplete="introduction" row="4" placeholder="よろしくお願いします。">{{ old('introduction') }}
                             </textarea>
                             @error('introduction')
                                 <span class="invalid-feedback" role="alert">

@@ -1,5 +1,7 @@
 @extends('layouts.user.app')
 
+@section('title', 'マイギャリー')
+
 @section('content')
 <h1 class="display-3 font-italic text-center">My Gallery</h1>
 <div class="container-fluid">
@@ -15,7 +17,7 @@
                             @if(isset($timeline->user->profile->img_path))
                                 <img class="rounded-circle mr-1" src="{{ $timeline->user->profile->img_path }}" width="30" height="30">
                             @else
-                                <img class="rounded-circle mr-1" src="{{ asset( 'storage/image/79511279656599.png') }}" width="30" height="30">
+                                <img class="rounded-circle mr-1" src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/79511279656599.png" width="30" height="30">
                             @endif
                             <div class="mr-3 d-flex align-items-center mr-auto">
                                 <a href="{{ url('user/users/' .$timeline->user->id) }}" class="text-light mr-1">@if(!empty($timeline->user->profile)){{ $timeline->user->profile->display_name }}@else{{ $timeline->user->name }}@endif </a>
@@ -48,6 +50,7 @@
                     </div>
                 </div>
             @endforeach
+            {{ $timelines->links() }}
         @endif
     </div>
 </div>

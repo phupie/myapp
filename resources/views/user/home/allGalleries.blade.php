@@ -1,7 +1,21 @@
 @extends('layouts.user.app')
 
+@section('title', 'すべてのギャラリー')
+
 @section('content')
-<h1 class="display-3 font-italic text-center">All Gallery</h1>
+<div class="row">
+    <div class="col-lg-3"></div>
+    <h1 class="col-lg-6 display-3 font-italic text-center">All Gallery</h1>
+    <div class="col-lg-3 text-center align-items-center">
+        @if (isset(Auth::user()->profile))
+            <a href="{{ url('user/home/galleries') }}" class="btn btn-primary col-md-10 mt-3">おすすめギャラリー<i class="fas fa-arrow-circle-right"></i></a>
+            <p class="col-md-10 mx-auto px-0 mb-0">ストーリー進行度より先の投稿を非表示にする</p>
+        @else
+            <a href="#" class="btn btn-primary col-md-10 mt-3  disabled" aria-disabled="true">おすすめギャラリー<i class="fas fa-arrow-circle-right"></i></a>
+            <p  class="col-md-10 mx-auto px-0 mb-0"></p><a href="{{ url('user/profile/create') }}" class="text-secondary">ストーリー進行度より先の投稿を非表示にするにはプロフィールを作成してください⇒</a></p>
+        @endif
+    </div>
+</div>
 <div class="container-fluid">
     <div class="row row-cols-md-2 row-cols-xl-3" data-masonry='{"percentPosition": true }'>
         @if (isset($posts))
@@ -15,7 +29,7 @@
                             @if(isset($post->user->profile->img_path))
                                 <img class="rounded-circle mr-1" src="{{ $post->user->profile->img_path }}" width="30" height="30">
                             @else
-                                <img class="rounded-circle mr-1" src="{{ asset( 'storage/image/79511279656599.png') }}" width="30" height="30">
+                                <img class="rounded-circle mr-1" src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/79511279656599.png" width="30" height="30">
                             @endif
                             <div class="mr-3 d-flex align-items-center mr-auto">
                                 <a href="{{ url('user/users/' .$post->user->id) }}" class="text-light mr-1">@if(!empty($post->user->profile)){{ $post->user->profile->display_name }}@else{{ $post->user->name }}@endif </a>
@@ -48,6 +62,7 @@
                     </div>
                 </div>
             @endforeach
+            {{ $posts->links() }}
         @endif
     </div>
 </div>
