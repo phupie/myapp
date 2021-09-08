@@ -151,7 +151,7 @@
                         <div class="form-group">
                             <label for="introduction">自己紹介
                             </label>
-                            <textarea id="introduction" type="text" class="form-control @error('introduction') is-invalid @enderror" name="introduction" required autocomplete="introduction" row="4" placeholder="よろしくお願いします。">{{ old('introduction') }}
+                            <textarea id="introduction" type="text" class="form-control @error('introduction') is-invalid @enderror" name="introduction" required autocomplete="introduction" row="4">よろしくお願いします。{{ old('introduction') }}
                             </textarea>
                             @error('introduction')
                                 <span class="invalid-feedback" role="alert">

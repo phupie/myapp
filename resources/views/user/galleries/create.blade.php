@@ -41,8 +41,8 @@
                             <div class="form-group col-md-6">
                                 <label for="area">エリア</label>
                                 <select id="area" type="text" class="form-control @error('area') is-invalid @enderror" name="areaName" required autocomplete="area">
-                                    @foreach(config('area') as $index => $name)
                                         <option value="" hidden>エリアを選択してください▼</option>
+                                    @foreach(config('area') as $index => $name)
                                         <option value="{{ $index }}">{{ $name }}</option>
                                     @endforeach
                                 </select>

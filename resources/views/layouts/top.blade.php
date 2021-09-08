@@ -99,7 +99,7 @@
                                     ＠{{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right bg-white" aria-labelledby="navbarDropdown">
                                     <a href="{{ url('user/users/' .auth()->user()->id) }}" class="dropdown-item">プロフィール</a>
                                     <a class="dropdown-item" href="{{ route('user.logout') }}"
                                        onclick="event.preventDefault();
