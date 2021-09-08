@@ -23,7 +23,7 @@
                                 <label class="btn p-0 hover">
                                     <input type="file" id="image-head" name="image" accept="image/*" class="image-head" style="display:none;">
                                     <div id="image-style"　class="hover-img">
-                                        <img src="@if(isset($profiles->head_img_path)) {{ $profiles->head_img_path }} @else https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/79511279656599.png @endif" id="image-output-head" class="w-100">
+                                        <img src="@if(isset($profiles->head_img_path)) {{ $profiles->head_img_path }} @else https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/795112796565.png @endif" id="image-output-head" class="w-100">
                                     </div>
                                     <div class="hover-text  d-flex align-items-center justify-content-center">
                                         <p class="text1 p-0"><i class="fas fa-camera fa-2x"></i></p>
