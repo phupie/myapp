@@ -18,7 +18,7 @@
                 <div class="col mb-1 p-1">
                     <div class="card">
                         <!-- Product image-->
-                        <a href="{{ url('user/galleries/' .$timeline->id) }}"><img class="card-img-top" src="{{ $timeline->img_path }}"/></a>
+                        <a href="{{ url('user/galleries/' .$timeline->id) }}"><img class="card-img-top h-100" src="{{ $timeline->img_path }}"/></a>
                         <!-- Product details-->
                         <div class="card-footer d-flex bd-highlight w-100 py-1">
                             @if(isset($timeline->user->profile->img_path))
