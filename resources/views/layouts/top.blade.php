@@ -36,89 +36,95 @@
 <body style="padding-top: 60px;">
     <div id="app">
         <nav class="navbar navbar-expand-xl navbar-dark fixed-top">
-            <div class="container-fluid">
-                <a class="navbar-brand mr-0" href="{{ url('/') }}"　data-toggle="tooltip" title="Top page">
-                    <img src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/12_Primary_logo_on_transparent_414x63.png" height="40">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto align-items-center snip1217">
-                        <li class="nav-item mr-2">
-                            <form class="d-flex" action="{{ url('user/galleries/search') }}" method="post">
-                                @csrf
-                                @method('GET')
-                                <input type="text" class="form-control me-2" type="search" placeholder="フリーワード検索" aria-label="Search" name="keyword">
-                                <select id="area" type="text" class="form-control" aria-label="Search" name="areaName">
-                                    @foreach(config('area') as $index => $name)
-                                        <option value="" hidden>エリアで検索</option>
-                                        <option value="{{ $index }}">{{ $name }}</option>
-                                    @endforeach
-                                </select>
-                                <button class="btn btn-outline-light bg-secondary" type="submit"><i class="px-2 fas fa-search"></i></button>
-                            </form>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('user/tags') }}">タグ一覧</a>
-                        </li>
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto align-items-center snip1217">
-                        <!-- Authentication Links -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('user/galleries/create') }}">投稿する</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('user/home/galleries') }}" data-toggle="tooltip" title="全ユーザーの投稿">ホームギャラリー</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('user/galleries') }}" data-toggle="tooltip" title="フォローユーザーの投稿">マイギャラリー</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('user/users') }}">ユーザー一覧</a>
-                            </li>
-                    </ul>
-                    <ul class="navbar-nav ml-4 align-items-center">
-                        @unless (Auth::guard('user')->check())
-                            <li class="nav-item ml-4 snip1217">
-                                <a class="nav-link" href="{{ route('user.login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('user.register'))
-                                <li class="nav-item ml-5 snip1217">
-                                    <a class="nav-link" href="{{ route('user.register') }}">{{ __('Register') }}</a>
+                <div class="container-fluid">
+                    
+                    <a class="navbar-brand" href="{{ url('/') }}"　data-toggle="tooltip" title="Top page">
+                        <img src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/12_Primary_logo_on_transparent_414x63.png" height="40">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+        
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="navbar-nav mr-auto">
+                        </ul>
+                        
+                        <!-- Right Side Of Navbar -->
+                            
+                        <ul class="navbar-nav ml-auto align-items-center snip1217">
+                                <li class="nav-item dropdown">
+                                    <a id="search" class="nav-link dropdown-toggle px-0" type="button" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false" v-pre>検索</a>
+                                    
+                                    <div class="dropdown-menu bg-light p-4 m-3"  aria-labelledby="search" style="width: 400px;">
+                                        <form class="" action="{{ url('user/galleries/search') }}" method="post">
+                                            @csrf
+                                            @method('GET')
+                                            <p>検索する</p>
+                                            <input type="text" class="form-control me-2 mb-3" type="search" placeholder="フリーワード検索" aria-label="Search" name="keyword">
+                                            <select id="area" type="text" class="form-control button mb-3" aria-label="Search" name="areaName">
+                                                @foreach(config('area') as $index => $name)
+                                                    <option value="" hidden>エリア検索</option>
+                                                    <option value="{{ $index }}">{{ $name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <button class="btn btn-outline-light bg-secondary ml-auto" type="submit"><i class="px-2 fas fa-search"></i></button>
+                                        </form>
+                                    </div>
                                 </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle py-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                @if(isset(auth()->user()->profile->img_path))
-                                    <img src="{{ auth()->user()->profile->img_path }}" class="rounded-circle" width="50" height="50">
+                                <li class="nav-item">
+                                    <a class="nav-link px-0" href="{{ url('user/tags') }}">タグ一覧</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link px-0" href="{{ url('user/galleries/create') }}">投稿する</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link px-0" href="{{ url('user/home/galleries') }}" data-toggle="tooltip" title="全ユーザーの投稿">ホームギャラリー</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link px-0" href="{{ url('user/galleries') }}" data-toggle="tooltip" title="フォローユーザーの投稿">マイギャラリー</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link px-0" href="{{ url('user/users') }}">ユーザー一覧</a>
+                                </li>
+                            @unless (Auth::guard('user')->check())
+                                <li class="nav-item mx-2 snip1217">
+                                    <a class="nav-link" href="{{ route('user.login') }}">{{ __('Login') }}</a>
+                                </li>
+                                @if (Route::has('user.register'))
+                                    <li class="nav-item mx-2 snip1217">
+                                        <a class="nav-link" href="{{ route('user.register') }}">{{ __('Register') }}</a>
+                                    </li>
                                 @endif
-                                    ＠{{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right bg-white" aria-labelledby="navbarDropdown">
-                                    <a href="{{ url('user/users/' .auth()->user()->id) }}" class="dropdown-item">プロフィール</a>
-                                    <a class="dropdown-item" href="{{ route('user.logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle py-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    @if(isset(auth()->user()->profile->img_path))
+                                        <img src="{{ auth()->user()->profile->img_path }}" class="rounded-circle" width="50" height="50">
+                                    @endif
+                                        ＠{{ Auth::user()->name }} <span class="caret"></span>
                                     </a>
-
-                                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+    
+                                    <div class="dropdown-menu dropdown-menu-right bg-light" aria-labelledby="navbarDropdown">
+                                        <a href="{{ url('user/users/' .auth()->user()->id) }}" class="dropdown-item text-body">プロフィール</a>
+                                        <a class="dropdown-item text-body" href="{{ route('user.logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+    
+                                        <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endguest
+                        </ul>
+                    </div>
                 </div>
-            </div>
+                
         </nav>
+            
         <section class="section section-a">
         </section>
         

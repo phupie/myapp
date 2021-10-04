@@ -36,7 +36,7 @@
 </head>
 <body style="padding-top: 60px;">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <nav class="navbar navbar-expand-xl navbar-dark fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand mr-0" href="{{ url('/') }}"　data-toggle="tooltip" title="Top page">
                     <img src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/12_Primary_logo_on_transparent_414x63.png" height="40">
@@ -48,48 +48,51 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto align-items-center snip1217">
-                        <li class="nav-item mr-2">
-                            <form class="d-flex" action="{{ url('user/galleries/search') }}" method="post">
-                                @csrf
-                                @method('GET')
-                                <input type="text" class="form-control me-2" type="search" placeholder="フリーワード検索" aria-label="Search" name="keyword">
-                                <select id="area" type="text" class="form-control" aria-label="Search" name="areaName">
-                                    @foreach(config('area') as $index => $name)
-                                        <option value="" hidden>エリアで検索</option>
-                                        <option value="{{ $index }}">{{ $name }}</option>
-                                    @endforeach
-                                </select>
-                                <button class="btn btn-outline-light bg-secondary" type="submit"><i class="px-2 fas fa-search"></i></button>
-                            </form>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('user/tags') }}">タグ一覧</a>
-                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto align-items-center snip1217">
                         <!-- Authentication Links -->
-                            <li class="nav-item">
-                                <a class="nav-link m-0" href="{{ url('user/galleries/create') }}">投稿する</a>
+                            <li class="nav-item dropdown">
+                                <a id="search" class="nav-link dropdown-toggle px-0" type="button" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false" v-pre>検索</a>
+                                
+                                <div class="dropdown-menu bg-light p-4 m-3"  aria-labelledby="search" style="width: 400px;">
+                                    <form class="" action="{{ url('user/galleries/search') }}" method="post">
+                                        @csrf
+                                        @method('GET')
+                                        <p>検索する</p>
+                                        <input type="text" class="form-control me-2 mb-3" type="search" placeholder="フリーワード検索" aria-label="Search" name="keyword">
+                                        <select id="area" type="text" class="form-control button mb-3" aria-label="Search" name="areaName">
+                                            @foreach(config('area') as $index => $name)
+                                                <option value="" hidden>エリア検索</option>
+                                                <option value="{{ $index }}">{{ $name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <button class="btn btn-outline-light bg-secondary ml-auto" type="submit"><i class="px-2 fas fa-search"></i></button>
+                                    </form>
+                                </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('user/home/galleries') }}" data-toggle="tooltip" title="全ユーザーの投稿">ホームギャラリー</a>
+                                <a class="nav-link px-0" href="{{ url('user/tags') }}">タグ一覧</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('user/galleries') }}" data-toggle="tooltip" title="フォローユーザーの投稿">マイギャラリー</a>
+                                <a class="nav-link px-0" href="{{ url('user/galleries/create') }}">投稿する</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('user/users') }}">ユーザー一覧</a>
+                                <a class="nav-link px-0" href="{{ url('user/home/galleries') }}" data-toggle="tooltip" title="全ユーザーの投稿">ホームギャラリー</a>
                             </li>
-                    </ul>
-                    <ul class="navbar-nav ml-4 align-items-center">
+                            <li class="nav-item">
+                                <a class="nav-link px-0" href="{{ url('user/galleries') }}" data-toggle="tooltip" title="フォローユーザーの投稿">マイギャラリー</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-0" href="{{ url('user/users') }}">ユーザー一覧</a>
+                            </li>
                         @unless (Auth::guard('user')->check())
-                            <li class="nav-item ml-4 snip1217">
+                            <li class="nav-item mx-4 snip1217">
                                 <a class="nav-link" href="{{ route('user.login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('user.register'))
-                                <li class="nav-item ml-5 snip1217">
+                                <li class="nav-item mx-4 snip1217">
                                     <a class="nav-link" href="{{ route('user.register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
