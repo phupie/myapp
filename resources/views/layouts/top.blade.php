@@ -27,11 +27,6 @@
     <link href="{{ secure_asset('css/top.css') }}" rel="stylesheet" media="screen and (min-width:1024px)">
     <!-- Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: system-ui;
-        }
-    </style>
 </head>
 <body style="padding-top: 60px;">
     <div id="app">

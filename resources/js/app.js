@@ -64,3 +64,11 @@ window.previewImage = function(obj)
 $(function () {
       $('[data-toggle="tooltip"]').tooltip();
 });
+
+//masonry
+$(window).on('load',function(){
+    $('.grid').masonry({
+        itemSelector: '.grid-item',
+        percentPosition: true
+    });
+});

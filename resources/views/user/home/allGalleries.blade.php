@@ -17,10 +17,10 @@
     </div>
 </div>
 <div class="container-fluid">
-    <div class="row row-cols-md-2 row-cols-xl-3" data-masonry='{"percentPosition": true }'>
+    <div class="row row-cols-xl-3 row-cols-lg-2 row-cols-1 grid">
         @if (isset($posts))
             @foreach($posts as $post)
-                <div class="col mb-1 p-1">
+                <div class="col mb-1 p-1 grid-item">
                     <div class="card">
                         <!-- Product image-->
                         <a href="{{ url('user/galleries/' .$post->id) }}"><img class="card-img-top h-100" src="{{ $post->img_path }}"/></a>

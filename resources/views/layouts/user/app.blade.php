@@ -13,10 +13,10 @@
 
     <!-- Scripts -->
     <script src="{{ secure_asset('js/app.js') }}" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ secure_asset('js/croppie.js') }}" type="module"></script>
     <script src="{{ secure_asset('js/favorite.js') }}" type="module"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js" type="module"></script>
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -28,11 +28,6 @@
     <link href="{{ secure_asset('css/style.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: system-ui;
-        }
-    </style>
 </head>
 <body style="padding-top: 60px;">
     <div id="app">
@@ -105,9 +100,9 @@
                                     ＠{{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a href="{{ url('user/users/' .auth()->user()->id) }}" class="dropdown-item">プロフィール</a>
-                                    <a class="dropdown-item" href="{{ route('user.logout') }}"
+                                <div class="dropdown-menu dropdown-menu-right bg-light" aria-labelledby="navbarDropdown">
+                                    <a href="{{ url('user/users/' .auth()->user()->id) }}" class="dropdown-item text-body">プロフィール</a>
+                                    <a class="dropdown-item text-body" href="{{ route('user.logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
