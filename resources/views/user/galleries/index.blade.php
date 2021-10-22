@@ -21,9 +21,8 @@
                             @endif
                             <div class="mr-3 d-flex align-items-center mr-auto">
                                 <a href="{{ url('user/users/' .$timeline->user->id) }}" class="text-light mr-1">@if(!empty($timeline->user->profile)){{ $timeline->user->profile->display_name }}@else{{ $timeline->user->name }}@endif </a>
-                                <p class="mb-0 text-secondary">＠{{ $timeline->user->name }}</p>
                                 <div class="mb-0 text-secondary mr-auto small">
-                                ・{{ $timeline->created_at->format('Y-m-d H:i') }}
+                                    {{ $timeline->created_at->format('Y-m-d H:i') }}
                                 </div>
                             </div>
                             <div class="py-1 d-flex justify-content-end">

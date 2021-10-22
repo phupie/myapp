@@ -2,7 +2,37 @@
 
 @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
 
+.wrapper {
+  overflow: hidden;
+}
+@media screen and (min-width: 1440px) {
+  html {
+      overflow-y: scroll;
+      overflow-x: hidden;
+      white-space: nowrap;
+       ::-webkit-scrollbar {
+         width: 10px;
+         height: 10px;
+       }
+       ::-webkit-scrollbar-track {
+          border-radius: 5px;
+          background: #BDBDBD;
+          box-shadow: 0 0 4px #393e46 inset;
+       }
+       ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: #212121;
+      }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  main {
+    overflow: hidden;
+  }
+}
 body { 
+  padding-top: 54px;
 	background: #BDBDBD !important;
   font-family: 'system-ui';
 	.collapse {
@@ -36,9 +66,10 @@ body {
 	}
 }
 
-
-body {
+#all-galleries {
+  display: none;
 }
+
 
 nav {
   background:#212121 !important;

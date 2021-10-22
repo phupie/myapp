@@ -29,9 +29,9 @@
     <!-- Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
-<body style="padding-top: 60px;">
+<body>
     <div id="app">
-        <nav class="navbar navbar-expand-xl navbar-dark fixed-top">
+        <nav class="navbar navbar-expand-xl navbar-dark fixed-top px-2">
             <div class="container-fluid">
                 <a class="navbar-brand mr-0" href="{{ url('/') }}"　data-toggle="tooltip" title="Top page">
                     <img src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/12_Primary_logo_on_transparent_414x63.png" height="40">
@@ -51,7 +51,7 @@
                             <li class="nav-item dropdown">
                                 <a id="search" class="nav-link dropdown-toggle px-0" type="button" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false" v-pre>検索</a>
                                 
-                                <div class="dropdown-menu bg-light p-4 m-3"  aria-labelledby="search" style="width: 400px;">
+                                <div class="dropdown-menu bg-light p-4 m-auto"  aria-labelledby="search" style="width: 200px;">
                                     <form class="" action="{{ url('user/galleries/search') }}" method="post">
                                         @csrf
                                         @method('GET')
@@ -74,7 +74,7 @@
                                 <a class="nav-link px-0" href="{{ url('user/galleries/create') }}">投稿する</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link px-0" href="{{ url('user/home/galleries') }}" data-toggle="tooltip" title="全ユーザーの投稿">ホームギャラリー</a>
+                                <a class="nav-link px-0" href="{{ url('user/home/galleries') }}" data-toggle="tooltip" title="みんなのギャラリー">ギャラリー</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link px-0" href="{{ url('user/galleries') }}" data-toggle="tooltip" title="フォローユーザーの投稿">マイギャラリー</a>

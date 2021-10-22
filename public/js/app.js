@@ -56078,6 +56078,27 @@ $(window).on('load', function () {
     itemSelector: '.grid-item',
     percentPosition: true
   });
+}); //ネタバレON/OFF
+
+$(function () {
+  $("#all_gallery").change(function () {
+    // チェックボックスがアクティブなら
+    if ($(this).prop('checked')) {
+      $("#galleries").hide();
+      $("#all-galleries").fadeIn();
+      $('.grid').masonry({
+        itemSelector: '.grid-item',
+        percentPosition: true
+      });
+    } else {
+      $("#all-galleries").hide();
+      $("#galleries").fadeIn();
+      $('.grid').masonry({
+        itemSelector: '.grid-item',
+        percentPosition: true
+      });
+    }
+  });
 });
 
 /***/ }),

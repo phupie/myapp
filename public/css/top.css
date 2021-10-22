@@ -1,7 +1,7 @@
 @media screen and (min-width: 1200px) {
   header div {
     background: black !important;
-    margin-top: -88px;
+    margin-top: -88px !important;
   }
 
   header div img {

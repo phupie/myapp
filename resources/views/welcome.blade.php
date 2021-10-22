@@ -4,6 +4,7 @@
 
 @section('content')
 <!-- Masthead-->
+    <div class="container-fluid p-0">
         <header class="masthead">
             <div>
                 <img src="https://myappff14.s3.ap-northeast-1.amazonaws.com/+material/GGpc6fd6hvRaFTsQM5hq1629528068-1629528327+(1).gif" class="w-100"></img>
@@ -24,7 +25,7 @@
                 <p class="lead mb-0 text-body">ここでは光の戦士たちがファイナルファンタジー１４で撮った風景を展示してもらいます<br>皆さんもどんどん飾ってここだけの美術館を作っていきましょう！</p>
             </section>
             <!-- Image Showcases-->
-            <section class="showcase text-center">
+            <section class="showcase text-center p-1">
                 <div class="container p-0">
                     <h1 class="row pt-4 justify-content-center">投稿のルール</h1>
                     <div class="row g-0 py-4">
@@ -118,4 +119,5 @@
                 </div>
             </div>
         </footer>
+    </div>
 @endsection

@@ -3,19 +3,15 @@
 @section('title', 'すべてのギャラリー')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-3"></div>
-    <h1 class="col-lg-6 display-3 font-italic text-center">All Gallery</h1>
-    <div class="col-lg-3 text-center align-items-center">
-        @if (isset(Auth::user()->profile))
-            <a href="{{ url('user/home/galleries') }}" class="btn btn-primary col-md-10 mt-3">おすすめギャラリー<i class="fas fa-arrow-circle-right"></i></a>
-            <p class="col-md-10 mx-auto px-0 mb-0">ストーリー進行度より先の投稿を非表示にする</p>
-        @else
-            <a href="#" class="btn btn-primary col-md-10 mt-3  disabled" aria-disabled="true">おすすめギャラリー<i class="fas fa-arrow-circle-right"></i></a>
-            <p  class="col-md-10 mx-auto px-0 mb-0"></p><a href="{{ url('user/profile/create') }}" class="text-secondary">ストーリー進行度より先の投稿を非表示にするにはプロフィールを作成してください⇒</a></p>
-        @endif
+<h1 class="display-3 font-italic text-center">Gallery</h1>
+@if(!empty($message))
+    <div class="alert alert-primary container" role="alert">
+        {{ $message }}
+        <a href="{{ url('user/profiles/create') }}">
+            作成はこちらから
+        </a>
     </div>
-</div>
+@endif
 <div class="container-fluid">
     <div class="row row-cols-xl-3 row-cols-lg-2 row-cols-1 grid">
         @if (isset($posts))

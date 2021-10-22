@@ -80,7 +80,7 @@ class Gallery extends Model
     {
         return $this->withCount('favorites')->where('user_id',$user_id)->orderBy('created_at', 'DESC')->paginate(20);
     }
-    //ストーリーに応じたギャラリー取得
+    //ネタバレ防止ギャラリー取得
     public function getProfileTimeLine(Int $story_num)
     {
         return $this->withCount('favorites')->where('area', '<=', $story_num)->orderBy('created_at', 'DESC')->paginate(20);

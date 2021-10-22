@@ -28,16 +28,25 @@ class HomeController extends Controller
     public function galleries(Profile $profile, Gallery $gallery)
     {
         $user = auth()->user();
-        
+        //すべてのギャラリー
+        $posts = $gallery->withCount('favorites')->paginate(20);
+
         if(isset($user->profile)) {
+            
+            //プロフィールに応じた表示
             $story_num = Profile::where('user_id', $user->id)->pluck('story_progress')->first();
             $timelines = $gallery->getProfileTimeLine($story_num);
             
             return view('user.home.galleries',[
-                'timelines' => $timelines
+                'timelines' => $timelines,
+                'posts' => $posts
             ]);
         } else {
-            return redirect('user/home/all');
+            $message = "プロフィールを作成するとネタバレになりそうな投稿をブロックできます！";
+            return view('user.home.allGalleries',[
+                'message' => $message,
+                'posts' => $posts
+            ]);
         }
     }
     
