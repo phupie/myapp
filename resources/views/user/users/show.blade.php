@@ -35,11 +35,11 @@
                             @else
                                 @if(Auth::check() && Auth::id() != $user->id)
                             		<follow-button 
-                                		login_user_id="{{json_encode(Auth::id())}}" 
-                                		user_id="{{json_encode($user->id)}}" 
-                                		csrf="{{json_encode(csrf_token())}}" 
-                                		following="{{json_encode(Auth::user()->isFollowing($user->id))}}" 
-                                		followed="{{json_encode(Auth::user()->isFollowed($user->id))}}">
+                                		:login_user_id="{{json_encode(Auth::id())}}" 
+                                		:user_id="{{json_encode($user->id)}}" 
+                                		:csrf="{{json_encode(csrf_token())}}" 
+                                		:following="{{json_encode(Auth::user()->isFollowing($user->id))}}" 
+                                		:followed="{{json_encode(Auth::user()->isFollowed($user->id))}}">
                             		</follow-button>
                         		@endif
         
