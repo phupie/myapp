@@ -98,3 +98,27 @@ $(function() {
         }
     });
 });
+
+$(function() {
+  var $children = $('.children');
+  var original = $children.html();
+
+  $('.parent').change(function() {
+    var val1 = $(this).val();
+
+    $children.html(original).find('option').each(function() {
+      var val2 = $(this).data('val');
+      if (val1 != val2) {
+        $(this).not('optgroup,.msg').remove();
+      }
+    });
+
+    if (val1 === '') {
+      $children.prop('disabled', true);
+    } else {
+      $children.prop('disabled', false);
+      $('.mute').removeClass('text-muted')
+    }
+
+  });
+});

@@ -42478,41 +42478,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "form",
-      {
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.send.apply(null, arguments)
+  return _c(
+    "div",
+    { staticClass: "d-flex flex-md-column mt-1 mb-auto ml-auto" },
+    [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.send.apply(null, arguments)
+            }
           }
-        }
-      },
-      [
-        _c("input", {
-          attrs: { type: "hidden", name: "_token" },
-          domProps: { value: _vm.csrf }
-        }),
-        _vm._v(" "),
-        _vm.following_check
-          ? _c("div", [
-              _c(
-                "button",
-                { staticClass: "btn btn-danger", attrs: { type: "submit" } },
-                [_vm._v("フォロー解除")]
-              )
-            ])
-          : _c("div", [
-              _c(
-                "button",
-                { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                [_vm._v("フォロー")]
-              )
-            ])
-      ]
-    )
-  ])
+        },
+        [
+          _c("input", {
+            attrs: { type: "hidden", name: "_token" },
+            domProps: { value: _vm.csrf }
+          }),
+          _vm._v(" "),
+          _vm.following_check
+            ? _c("div", [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-danger", attrs: { type: "submit" } },
+                  [_vm._v("フォロー解除")]
+                )
+              ])
+            : _c("div", [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                  [_vm._v("フォロー")]
+                )
+              ])
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -56097,6 +56101,27 @@ $(function () {
         itemSelector: '.grid-item',
         percentPosition: true
       });
+    }
+  });
+});
+$(function () {
+  var $children = $('.children');
+  var original = $children.html();
+  $('.parent').change(function () {
+    var val1 = $(this).val();
+    $children.html(original).find('option').each(function () {
+      var val2 = $(this).data('val');
+
+      if (val1 != val2) {
+        $(this).not('optgroup,.msg').remove();
+      }
+    });
+
+    if (val1 === '') {
+      $children.prop('disabled', true);
+    } else {
+      $children.prop('disabled', false);
+      $('.mute').removeClass('text-muted');
     }
   });
 });

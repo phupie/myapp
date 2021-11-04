@@ -103,6 +103,6 @@ class LoginController extends Controller
         }
 
         Auth::login($user);
-        return redirect()->route('user.galleries.index');
+        return redirect()->route("user.galleries.index");
     }
 }

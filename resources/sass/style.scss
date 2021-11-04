@@ -5,11 +5,10 @@
 .wrapper {
   overflow: hidden;
 }
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1200px) {
   html {
       overflow-y: scroll;
       overflow-x: hidden;
-      white-space: nowrap;
        ::-webkit-scrollbar {
          width: 10px;
          height: 10px;
@@ -17,16 +16,15 @@
        ::-webkit-scrollbar-track {
           border-radius: 5px;
           background: #BDBDBD;
-          box-shadow: 0 0 4px #393e46 inset;
        }
        ::-webkit-scrollbar-thumb {
         border-radius: 5px;
         background: #212121;
-      }
+       }
   }
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1200px) {
   main {
     overflow: hidden;
   }
@@ -35,32 +33,72 @@ body {
   padding-top: 54px;
 	background: #BDBDBD !important;
   font-family: 'system-ui';
+  
+  .card-img-overlay {
+    background-color: rgb(0,0,0,0.7);
+    height: 48px;
+    visibility: hidden;
+  }
+  
+  .card:hover {
+    .card-img-overlay {
+      visibility: visible;
+    }
+  }
+  select {
+    .region {
+      background: #ffe4b5;
+    }
+    .id {
+      background: #ffc766;
+    }
+  }
+  #profile {
+    p {
+      color: #BDBDBD;
+    }
+    #profile-h {
+      color: #dbe2ef;
+    }
+    .border-left {
+      border-width: 5px !important;
+      border-color: #dbe2ef !important;
+    }
+  }
+  .children:disabled { 
+    background-color: #a9a9a9;
+  }
+
 	.collapse {
 	  background: #212121;
 	}
+	
 	header {
 	  margin-top: -24px;
 	}
+	
 	section {
 	  font-family: 'DotGothic16', sans-serif !important;
 	}
+	
 	.card {
 	    background: #112d4e;
 	    border-color: #000000;
-	    .card-footer {
-	        border-color: #000000;
-	    }
 	}
+	
 	.list-group-item {
 	    background: #112d4e;
 	    border-color: #000000;
 	}
+	
 	.features-icons { 
 		background-color: #BDBDBD; 
 	}
+	
 	h1 {
 		font-family: 'Amatic SC', cursive;
 	}
+	
 	.showcase {
 		background: #dbe2ef;
 	}

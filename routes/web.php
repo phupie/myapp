@@ -49,7 +49,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
         
         //gallery
         Route::get('galleries/search', 'GalleryController@search');
-        Route::resource('galleries', 'GalleryController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+        Route::resource('galleries', 'GalleryController', ['only' => ['index', 'create', 'store', 'show', 'destroy']]);
         //comment
         Route::resource('comments', 'CommentController', ['only' => ['store', 'show']]);
         

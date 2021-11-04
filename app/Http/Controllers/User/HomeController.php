@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $user = auth()->user();
         //すべてのギャラリー
-        $posts = $gallery->withCount('favorites')->paginate(20);
+        $posts = $gallery->withCount('favorites')->orderBy('created_at', 'DESC')->paginate(20);
 
         if(isset($user->profile)) {
             

@@ -3,10 +3,10 @@
 @section('title', $gallery->user->name. 'の投稿「'. $gallery->title. '」')
 
 @section('content')
-<div class="container">
+<div class="container-fulid">
     <div class="row justify-content-center">
-        <div class="col-md-12 mb-3">
-            <div class="card">
+        <div class="col-md-8 mb-3">
+            <div class="card text-light">
                 <img class="card-image-top" src="{{ $gallery->img_path }}">
                 <div class="card-body">
                     <div class="d-flex mb-3">
@@ -25,11 +25,18 @@
                             {{ $gallery->created_at->format('Y-m-d H:i') }}
                         </div>
                     </div>
-                    <h4 class="text-light">
+                    <h4 class="">
                         {{ $gallery->title }}
-                        <small class="text-muted">
-                            {{ $gallery->areaName }}
-                        </small>
+                        <em class="h5 text-info">
+                            <small>
+                                {{ $gallery->areaName }}
+                            </small>
+                        </em>
+                        @if(!empty($gallery->detailArea))
+                            <small class="h6 text-white-50">
+                                 ---{{ $gallery->detailArea }}---
+                            </small>
+                        @endif
                     </h4>
                     <div>
                     	@foreach($gallery->tags as $tag)
@@ -45,28 +52,12 @@
                     </div>
                     <p class="text-light">{!! nl2br(e($gallery->explanation)) !!}</p>
                 </div>
-                <div class="card-footer py-1 d-flex justify-content-end">
-                    @if ($gallery->user->id === Auth::user()->id)
-                        <div class="dropdown mr-3 d-flex align-items-center">
-                            <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-fw"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <form method="POST" action="{{ url('user/galleries/' .$gallery->id) }}" class="mb-0" id="delele">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <a href="{{ url('user/galleries/' .$gallery->id .'/edit') }}" class="dropdown-item">編集</a>
-                                    <button type="submit" class="dropdown-item del-btn" onclick="deleteConfirm('delele');return false;">削除</button>
-                                </form>
-                            </div>
-                        </div>
-                    @endif
+                <div class="card-footer py-1 d-flex justify-content-end h5">
                     <div class="mr-3 d-flex align-items-center">
                         <a href="{{ url('user/galleries/' .$gallery->id) }}"><i class="far fa-comment fa-fw"></i></a>
                         <p class="ml-1 mb-0 text-secondary">{{ count($gallery->comments) }}</p>
                     </div>
-                    <div class="d-flex align-items-center">
+                    <div class="mr-3 d-flex align-items-center">
                         @if (!$gallery->isFavorited(Auth::user()))
                             <span class="favorites">
                                 <i class="far fa-heart fa-fw favorite-toggle text-primary LikesIcon-fa-heart" data-gallery-id="{{ $gallery->id }}"></i>
@@ -79,12 +70,23 @@
                         </span><!-- /.likes -->
                         @endif
                     </div>
+                    @if ($gallery->user->id === Auth::user()->id)
+                        <div class="d-flex align-items-center">
+                            <form method="POST" action="{{ url('user/galleries/' .$gallery->id) }}" class="mb-0" id="delele">
+                                @csrf
+                                @method('DELETE')
+                                <a href="#" type="submit" onclick="deleteConfirm('delele');return false;" data-toggle="tooltip" title="削除"><i class="far fa-trash-alt"></i></a>
+                            </form>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
+    <div  class="border-top border-dark mb-3">
+    </div>
     <div class="row justify-content-center">
-            <div class="col-md-8 mb-3">
+            <div class="col-md-6 mb-3">
                 @if (session('flash_message'))
                     <div class="flash_message text-danger">
                         {{ session('flash_message') }}

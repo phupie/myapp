@@ -1,5 +1,5 @@
 <template>
- <div>
+ <div class="d-flex flex-md-column mt-1 mb-auto ml-auto">
     <form @submit.prevent="send" class="">
      <input type="hidden" name="_token" v-bind:value="csrf">
      <div v-if="following_check">

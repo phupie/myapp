@@ -52,6 +52,7 @@ class Gallery extends Model
         $this->title = $data['title'];
         $this->explanation = $data['explanation'];
         $this->area = $data['areaName'];
+        $this->area_detail = $data['detailArea'];
         
         // 画像の拡張子を取得
         $extension = $data['img']->getClientOriginalExtension();
@@ -127,5 +128,10 @@ class Gallery extends Model
     public function getAreaNameAttribute()
     {
         return config('area.'.$this->area);
+    }
+    //area-detail変換
+    public function getDetailAreaAttribute()
+    {
+        return config('area-detail.'.$this->area_detail);
     }
 }

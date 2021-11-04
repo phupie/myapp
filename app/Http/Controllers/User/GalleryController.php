@@ -65,7 +65,8 @@ class GalleryController extends Controller
             'title' => ['required', 'string'],
             'explanation' => ['required', 'string'],
             'img' => 'file|required',
-            'areaName' => ['required', 'integer']
+            'areaName' => ['required', 'integer'],
+            'detailArea' => ['required', 'integer']
         ]);
         
         $validator->validate();
